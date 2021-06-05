@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="So I was spending some time recently going over some Lebesgue integration theory (of course, in preparation for my qualifiers) when I came across a pretty cool problem. QuestionProve that for any $p &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quite a surprising integral">
+<meta property="og:url" content="http://example.com/2021/05/28/Integral/index.html">
+<meta property="og:site_name" content="Arun Suresh">
+<meta property="og:description" content="So I was spending some time recently going over some Lebesgue integration theory (of course, in preparation for my qualifiers) when I came across a pretty cool problem. QuestionProve that for any $p &amp;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-29T03:06:17.000Z">
+<meta property="article:modified_time" content="2021-06-05T21:53:13.799Z">
+<meta property="article:author" content="Arun Suresh">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Quite a surprising integral</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/asuresh213">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/05/23/problem-3/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/28/Integral/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/28/Integral/&text=Quite a surprising integral"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/28/Integral/&title=Quite a surprising integral"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/28/Integral/&is_video=false&description=Quite a surprising integral"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Quite a surprising integral&body=Check out this article: http://example.com/2021/05/28/Integral/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/28/Integral/&title=Quite a surprising integral"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/28/Integral/&title=Quite a surprising integral"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/28/Integral/&title=Quite a surprising integral"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/28/Integral/&title=Quite a surprising integral"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/28/Integral/&name=Quite a surprising integral&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/28/Integral/&t=Quite a surprising integral"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-number">1.</span> <span class="toc-text">Question</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Theoretical-Detour"><span class="toc-number">3.</span> <span class="toc-text">Theoretical Detour</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-to-the-problem"><span class="toc-number">4.</span> <span class="toc-text">Back to the problem</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Quite a surprising integral
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Arun Suresh</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-29T03:06:17.000Z" itemprop="datePublished">2021-05-28</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>So I was spending some time recently going over some Lebesgue integration theory (of course, in preparation for my qualifiers) when I came across a pretty cool problem.</p>
+<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>Prove that for any $p &gt; -1$ we have<br>$$\int_{0}^1 \frac{x^p}{1-x}\ln\left( \frac{1}{x}\right) \ \mathrm{d}x = \sum_{k=1}^\infty \frac{1}{(p+k)^2}$$</p>
+<p>Of course, as always, you are more than welcome to have a go at it, before coming back here to read on.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>One of the first things to notice in this problem is that the left-hand-side is an integral, while the right-hand-side is a summation; and this is fascinating by itself. So if we are to have any hopes of proving this identity, we need to somehow introduce a sum on the left, or an integral on the right.</p>
+<p>After fighting with this problem a bit, we recognize one of our long lost friends from Calculus.</p>
+<p>$$ \sum_{n=1}^\infty x^n = \frac{1}{1-x} $$</p>
+<p>Of course, provided that $x \in (0,1)$, which it is, in this case! So there it is, a sum inside the integral just like we wanted. So we are tasked with proving</p>
+<p>$$\int_0^1 \left[ \sum_{k=1}^\infty -\ln(x)x^{k+p} \right]\ \mathrm{d}x = \sum_{k=1}^\infty \frac{1}{(p+k)^2}$$</p>
+<p>It is at this point we must proclaim to ourselves: “Damn, it would be very nice if we could interchange the integral and the sum…”. And this seems like a cause worth fighting for. So we are stuck trying to know when it is legal to interchange the integral and the sum.</p>
+<h2 id="Theoretical-Detour"><a href="#Theoretical-Detour" class="headerlink" title="Theoretical Detour"></a>Theoretical Detour</h2><p>Clearly, we can do this if $f$ is positive valued because of the monotnocity of the integral. Here is a quick sketch of that proof</p>
+<p><font style="color:pink;"><em>Proof:</em></font> The monotnocity of the integral tells us that if $f_k \uparrow f$ then $\int_E f_k \uparrow \int_E f$ for $f_k$ non-negative Lebesgue integrable functions. <a target="_blank" rel="noopener" href="http://mathonline.wikidot.com/beppo-levi-s-lemma-for-nonnegative-increasing-measurable-fun">Here</a> is a nice proof of the statement. So we can set $s_k = \sum_{n=1}^k f_k(x)$ and $s(x) = \sum_{k=1}^\infty f_k(x)$. Clearly $s_k \uparrow s$, and thus $$\int_{E} \sum_{k=1}^\infty f_k(x) = \int_E s = \lim_n \int_E s_n = \lim_n \int_E \sum_{k=1}^n f_k(x) = \lim_n \sum_{k=1}^n \int_E f_k(x) = \sum_{k=1}^\infty \int_E f_k(x)$$<br>And we win $\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad\qquad\qquad \square$</p>
+<p>Now all we need to do is generalize this to all functions. As we hurriedly peruse through our class notes from two semesters ago, we will uncover a gem, that shouldn’t have been forgotten in the first place: The Lebesgue Dominated Convergence theorem. This gives us hope.</p>
+<p><font style="color:orange;"><strong>Theorem</strong></font> <font style="color:pink;"><em>(Lebesgue Dominated Convergence theorem)</em></font> <font style="color:orange;"><strong>:</strong></font> Suppose $E \subseteq X$ is a subset of some space $X$ and $f_k \in L(E)$<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> and $f_k \to f$ almost everywhere in $E$. If there exists some $g \in L(E)$ such that $|f_k| \leq g$ for all $k$, then $\int_E f_k \to \int_E f$.</p>
+<p>Now the nice thing is we can try and do the same sort of trick here. Given some sequence of functions $f_k$, we can let $$s_k = \sum_{n=1}^k f_k(x) \quad \text{ and } \quad s(x) = \sum_{k=1}^\infty f_k(x)$$<br>and we see $s_k \to s$, but it is no longer a monotone convergence because some of the $f_k(x)$ could have negative values. So is there anything else we can do? Well, sorta?</p>
+<p>If we let<br>$$s_k = \sum_{n=1}^k |f_k(x)| \quad \text{ and } \quad s(x) = \sum_{k=1}^\infty |f_k(x)|$$<br>then we know that $s_k \uparrow s$ and the previous result holds. But wait a second, if $s$ is Lebesgue integrable, we could potentially use it as the $g$ function in DCT! To make this a bit more clear, from the previous result we have<br>$$\int_E s = \sum_{k=1}^\infty \int_E |f_k| $$<br>So if we have an additional hypothesis that<br>$$\sum_{k=1}^\infty \int_E |f_k| &lt; \infty$$<br>then $s$ becomes Lebesgue integrable and so, given $h_n = \sum_{k=1}^n f_k$, we know that $|h_n| \leq s$ for all $n$ <sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>. We also know that $h_n \to f$ where $f = \sum_{k=1}^\infty f_k$. So by DCT, we have $$\lim_n \int_E h_n = \int_E f \implies \sum_{k=1}^\infty \int_E f_k = \int_E \sum_{k=1}^\infty f_k$$<br>and we win!  $\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad\qquad\qquad \square$</p>
+<p>The above discussion can be encapsulated into a nice corollary to DCT as follows</p>
+<p><font style="color:orange;"><strong>Corollary:</strong></font> Let $f_k \in L(E)$. If $\sum_{k=1}^\infty \int_E |f_k| &lt; \infty$ then $$\int_E \sum_{k=1}^\infty f_k = \sum_{k=1}^\infty \int_E f_k$$</p>
+<h2 id="Back-to-the-problem"><a href="#Back-to-the-problem" class="headerlink" title="Back to the problem"></a>Back to the problem</h2><p>Clearly we are going to let $f_k = -\ln(x)x^{k+p}$. The only thing we want to check in our problem is the additional hypothesis that  $\sum_{k=1}^\infty \int_E |f_k| &lt; \infty$ (The integrability of $f_k$ is easily checked!). To this end, consider</p>
+<p>$$\sum_{k=0}^\infty \int_0^1 -\ln(x)x^{k+p}\ \mathrm{d}x $$</p>
+<p>which we want to show is finite <sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
+<p>Integrating by parts, we have that</p>
+<p>$$\sum_{k=0}^\infty \bigg( \frac{1}{k+p+1} \bigg[-\ln(x)x^{k+p+1}\bigg]_0^1 +\frac{1}{k+p+1}\int_0^1x^{k+p}\ \mathrm{d}x \bigg) $$</p>
+<p>Notice that $$\lim_{x\rightarrow 0} \ln(x)x^{k+p+1} = \lim_{x\rightarrow 0} \frac{\ln(x)}{\frac{1}{x^{k+p+1}}} \sim \lim_{x\rightarrow 0} \frac{1/x}{-(k+p+1)x^{-(k+p)}} = -\frac{1}{k+p+1}x^{k+p-1} = 0$$<br>where $\sim$ denotes the application of L-Hospital’s rule.</p>
+<p>And so,</p>
+<p>$$\frac{1}{k+p+1} \bigg[-\ln(x)x^{k+p+1}\bigg]_0^1 = 0$$</p>
+<p>Therefore, we have that the required integral is simply given by</p>
+<p>$$\sum_{k=0}^\infty \frac{1}{k+p+1}\int_0^1x^{k+p}\ \mathrm{d}x = \sum_{k=0}^{\infty} \frac{1}{(k+p+1)^2}$$</p>
+<p>Under change of index $(k+1 \rightarrow k)$, we have that the required integral evaluates to</p>
+<p>$$\sum_{k=1}^\infty \frac{1}{(k+p)^2}$$</p>
+<p>and notice that for all $p&gt;-1$, the above series is convergent <sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>.</p>
+<p>Therefore we have shown that $\sum_k \int_E f_k(x) &lt; \infty$. So by the corollary discussed above, we have that</p>
+<p>$$\int_0^1 f(x) \ \mathrm{d}x = \int_0^1 \sum_{k=0}^\infty -\ln(x)x^{k+p} \ \mathrm{d}x = \sum_{k=0}^\infty \int_0^1 -\ln(x)x^{k+p} \ \mathrm{d}x = \sum_{k=1}^\infty \frac{1}{(k+p)^2}$$</p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">$L(E)$ is the set of Lebesgue integrable functions from $E$ to $\overline{\mathbb{R}}$</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">Triangle inequality (and of course also because $s$ is an infinite sum).</span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;">Notice that in $(0,1)$ $\ln(x) &lt; 0$, so $|\ln(x)| = -\ln(x)$</span><a href="#fnref:3" rev="footnote"> ↩</a></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">4.</span><span style="display: inline-block; vertical-align: top;">$p-$test with some direct comparison test shenanigans suffice to guarantee this</span><a href="#fnref:4" rev="footnote"> ↩</a></li></ol></div></div>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/asuresh213">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-number">1.</span> <span class="toc-text">Question</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Theoretical-Detour"><span class="toc-number">3.</span> <span class="toc-text">Theoretical Detour</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-to-the-problem"><span class="toc-number">4.</span> <span class="toc-text">Back to the problem</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/28/Integral/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/28/Integral/&text=Quite a surprising integral"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/28/Integral/&title=Quite a surprising integral"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/28/Integral/&is_video=false&description=Quite a surprising integral"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Quite a surprising integral&body=Check out this article: http://example.com/2021/05/28/Integral/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/28/Integral/&title=Quite a surprising integral"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/28/Integral/&title=Quite a surprising integral"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/28/Integral/&title=Quite a surprising integral"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/28/Integral/&title=Quite a surprising integral"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/28/Integral/&name=Quite a surprising integral&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/28/Integral/&t=Quite a surprising integral"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Arun Suresh
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/asuresh213">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
