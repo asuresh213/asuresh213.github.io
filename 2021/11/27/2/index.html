@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="This post is the promised follow up to my previous post Everything is $\aleph_1$. In the previous post, among other things, we considered the following problem:  The cardinality of following pairs of">
+<meta property="og:type" content="article">
+<meta property="og:title" content="L-systems and generalized fractal generation">
+<meta property="og:url" content="http://example.com/2021/11/27/2/index.html">
+<meta property="og:site_name" content="Arun Suresh">
+<meta property="og:description" content="This post is the promised follow up to my previous post Everything is $\aleph_1$. In the previous post, among other things, we considered the following problem:  The cardinality of following pairs of">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://asuresh213.github.io/2021/11/27/2/iter1.png">
+<meta property="og:image" content="http://asuresh213.github.io/2021/11/27/2/iter2.png">
+<meta property="og:image" content="http://asuresh213.github.io/2021/11/27/2/hilbertl.png">
+<meta property="article:published_time" content="2021-11-27T14:52:37.000Z">
+<meta property="article:modified_time" content="2023-10-30T00:52:55.630Z">
+<meta property="article:author" content="Arun Suresh">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://asuresh213.github.io/2021/11/27/2/iter1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>L-systems and generalized fractal generation</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/research/">Research</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2023/10/29/Side%20Projects/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/10/28/L-system/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/11/27/2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/11/27/2/&text=L-systems and generalized fractal generation"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/11/27/2/&title=L-systems and generalized fractal generation"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/11/27/2/&is_video=false&description=L-systems and generalized fractal generation"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=L-systems and generalized fractal generation&body=Check out this article: http://example.com/2021/11/27/2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/11/27/2/&title=L-systems and generalized fractal generation"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/11/27/2/&title=L-systems and generalized fractal generation"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/11/27/2/&title=L-systems and generalized fractal generation"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/11/27/2/&title=L-systems and generalized fractal generation"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/11/27/2/&name=L-systems and generalized fractal generation&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/11/27/2/&t=L-systems and generalized fractal generation"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hilbert%E2%80%99s-curve"><span class="toc-number">1.</span> <span class="toc-text">Hilbert’s curve</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#L-systems"><span class="toc-number">2.</span> <span class="toc-text">L-systems</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Context-rambling"><span class="toc-number">2.1.</span> <span class="toc-text">Context rambling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#L-system-background"><span class="toc-number">2.2.</span> <span class="toc-text">L-system background</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Building-an-engine"><span class="toc-number">2.3.</span> <span class="toc-text">Building an engine</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Animations"><span class="toc-number">3.</span> <span class="toc-text">Animations</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        L-systems and generalized fractal generation
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Arun Suresh</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-11-27T14:52:37.000Z" itemprop="datePublished">2021-11-27</time>
+        
+        (Updated: <time datetime="2023-10-30T00:52:55.630Z" itemprop="dateModified">2023-10-29</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Math/" rel="tag">Math</a>, <a class="tag-link-link" href="/tags/Programming/" rel="tag">Programming</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>This post is the promised follow up to my previous post <a target="_blank" rel="noopener" href="https://asuresh213.github.io/2021/10/28/L-system/">Everything is $\aleph_1$</a>. In the previous post, among other things, we considered the following problem:</p>
+<blockquote>
+<p>The cardinality of following pairs of sets are the same: $[0,1]\times[0,1]$ and $[0,1]$</p>
+</blockquote>
+<p>We resolved this problem by taking advantage of the uniqueness of decimal expansion of real numbers (up to ambiguities with infinite trailing 9s, which we took care of). However, this solution was by no means my first approach to this problem. As a matter of fact, the first thing that came to mind when I read the problem was the so called <em>Hilbert’s (space filling) curve</em> (In fact, any space filling curve would work). We will explore Hilbert’s curve, which is <em>kind of</em> a fractal, shortly and show that it indeed works as a valid example in this case. This post, however, is motivated by what came <em>after</em> I proved this claim. You see, once I had such a nice result, I really wanted to write a blog post about it; and having decided to write a blog post about it, I really wanted to animate the space filling nature of Hilbert’s curve (whatever that means). It is this pursuit that led me to this very general procedure to generate fractal like structures by constructing what are called Lindenmayer systems (or L-systems for short).</p>
+<p>So in this post, we will first encounter the Hilbert curve, and (visually) verify why it is a solution to the problem at hand. Once we have seen that, we will delve into what L-systems are, and how to perhaps design an engine that would write those systems out and draw the corresponding fractals. Finally I will show off some of the really beautiful fractal creations that the engine made possible. I should also give a huge shout out at this point to Grant Sanderson’s math animation engine, <a target="_blank" rel="noopener" href="https://github.com/3b1b/manim">manim</a>, which made possible all the stunning visuals I have in this post.</p>
+<h2 id="Hilbert’s-curve"><a href="#Hilbert’s-curve" class="headerlink" title="Hilbert’s curve"></a>Hilbert’s curve</h2><p>The Hilbert curve $f$ is the uniform limit of a sequence of piece-wise linear curves all contained inside the unit square, with the length of the $n^{th}$ curve $f_n$ being $2^n - 2^{-n}$. The curve itself is produced inductively. The first iterate is obtained by taking the unit square, dividing it into four quadrants and joining the midpoints of the four sub-squares using a piece-wise linear continuous curve as shown below</p>
+<img style="padding: 10px;" width="275" height="275" src="http://asuresh213.github.io/2021/11/27/2/iter1.png">
+
+<p>After doing this, each of the four sub-squares are further subdivided into four quadrants of sub-sub-squares. The current curve is removed, and in its place, four copies of the current curve, scaled down by a factor of four, are distributed to each of the sub-sub-squares. The bottom left and right copies are rotated by $90$ and $275$ degrees clockwise respectively before the open ends are connected. The second iterate obtained form the first, is displayed below</p>
+<img style="padding: 10px;" width="275" height="275" src="http://asuresh213.github.io/2021/11/27/2/iter2.png">
+
+<p>And this process proceeds inductively. The sequence of curves and its space filling nature is best illustrated by the following animation<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/Hilbert_evolution.mp4">Your browser does not support the video tag.</video>
+
+<p>If we can, for a moment, take for granted that this limiting curve $f$, if it exists, indeed fills the space of the unit square (that is to say, the curve passes through every point on the unit square) then we get our desired (remarkable) result! This is because $f_n$  has length $\ell(n) = 2^n - 2^{-n}$ and in the limit as $n \to \infty$, we have $f_n \to f$ and $\ell(n) \to \infty$. This means, in the limit, we are essentially squeezing all of $\mathbb{R}$ into the unit square<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>. But we know from part $(a)$ of the same problem (refer <a target="_blank" rel="noopener" href="https://asuresh213.github.io/2021/10/28/L-system/">previous post</a>) that the cardinality of $[0,1]$ is the same as that of $\mathbb{R}$. Thus, a reparameterization using either $\arctan$ or the other method illustrated in the previous post gives our desired result.</p>
+<p>Thus, the only thing that is left to show is that the sequence $\{f_n\}$ uniformly converges to the function $f$ and the function $f$ is has the desired space filling properties. I was originally going to produce my proof of the statement here, but then in trying to figure out some small technicalities that I encountered while writing it up for the blog post, I came across <a target="_blank" rel="noopener" href="https://math.stackexchange.com/questions/141958/why-does-the-hilbert-curve-fill-the-whole-square/142029">this post</a> on Stack Exchange which has a few slick proofs (from PhoemueX and Martin Argerami) of the statement, that are much better than my ad-hoc constructions and calculations. I will at some point in the future come back to this post and unpack their arguments with visual aid. But for now, let us set our heart at ease and move on to the main star of the post.</p>
+<h2 id="L-systems"><a href="#L-systems" class="headerlink" title="L-systems"></a>L-systems</h2><h3 id="Context-rambling"><a href="#Context-rambling" class="headerlink" title="Context rambling"></a>Context rambling</h3><p>Having submitted my assignment, and having wanted to write a blog post about the subject – I started my search for a reasonable way to recursively draw the Hilbert curve. After all, this is a textbook example of a recursive process. Of course, as any realistic search goes, my first pit-stop was at Wikipedia to see if there is a recursive closed form functional equation to $f_n$. If I was able to find such a thing (and I am sure someone with infinite patience can figure it out if they set their mind to it) I would hit the jackpot because then all I really had to do was set up manim and tell the compiler what to do, and that was the less contrived bit. But when I went to Wikipedia and looked up the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hilbert_curve">Hilbert curve</a>, lo and behold, there was pseudo-code for generating the fractal! My day was getting better and better!</p>
+<p>But then right below the pseudo-code I saw this entryway to a rabbit hole.<br><img style="padding: 10px;" width="850" height="250" src="http://asuresh213.github.io/2021/11/27/2/hilbertl.png"></p>
+<p>The language seemed weirdly formal for any of the ad-hoc fractal generation I was doing and so I naturally started wondering what an L-system was. Whatever it was, it indeed sounded hella cool. So I started looking into it.</p>
+<h3 id="L-system-background"><a href="#L-system-background" class="headerlink" title="L-system background"></a>L-system background</h3><p>L-systems or Lindenmayer systems (named after the biologist who invented the concept whilst studying algae cultures) is a type of string rewriting system. In order the understand what a string rewriting system is, we will start with a set $\Sigma$ of symbols, or alphabets. Then on top of this $\Sigma$ we construct a new set $\Sigma^*$ which is defined to be the smallest set containing $\Sigma$ that also contains all possible finite combination of alphabets in $\Sigma$. That is to say $\Sigma^*$ is the collection of <em>words</em> whose alphabets come from $\Sigma$. Finally for the re-writing part, we consider a binary relation $R$ on $\Sigma^* \times \Sigma^*$. Elements of this relation are denoted $(u \to v)$, and one can essentially understand this as replacing the string $u$ with the string $v$.</p>
+<p>L-systems are string rewriting systems but with some more added structure. This additional structure is manifested through the relation $R$, which in this case is called <em>production rule(s)</em> and realized through attaching an extrinsic meaning to certain symbols. It was whilst studying about these L-sytems that I realized that these are precisely the most natural way to generate fractals through code.</p>
+<p>This is because while describing in words, how a fractal is constructed, the most natural thing to do is to describe the process iteratively. Say for example, if I were to explain to you how to construct the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cantor_set#Construction_and_formula_of_the_ternary_set">Cantor set</a>, I would say “Take a line segment of length 1, remove the middle third, for each of the two new line segments, remove their middle thirds, and now to each of the eight line segments, remove their middle thirds and so on and so forth ad infinitum and the resulting set is what the Cantor set is” and you would know exactly how to go about drawing successive iterations of the Cantor set. L-systems basically do exactly that, but in a formal way!</p>
+<p>The L-system for the cantor set is given by $\Sigma = \{$A, B$\}$. The initial string (or the <strong>axiom</strong>) is the word A and the production rules are A $\to$ ABA and B $\to$ BBB. The added structure to these rules are realized when we tell the computer to take the string in the $n^{th}$ step and interpret any A it sees as “draw a line of a specified length” and any B it sees as “move forward by a specified length”. Forgetting these added interpretations for a second, let us just understand the evolution of the axiom A if we treat this process purely from the standpoint of string rewriting.</p>
+<p>So the evolution of the axiom tracks as follows:</p>
+<ol>
+<li>A (axiom)</li>
+<li>ABA (The rewriting A $\to$ ABA was performed)</li>
+<li>(ABA)(BBB)(ABA) = ABABBBABA (A $\to$ ABA twice and B $\to$ BBB once)</li>
+<li>ABABBBABABBBBBBBBBABABBBABA (I cant be bothered…)</li>
+<li>…</li>
+</ol>
+<p>As we can see, this does get out of control real fast. But now, let us plug back in the interpretation that gives L-systems that added structure. Let us now tell the compiler that in the $n^{th}$ iteration it must understand any $A$ it sees as drawing a horizontal line of length $3^{-n}$ and $B$ as moving forward by a length of $3^{-n}$. So, in the $n^{th}$ step, as the compiler reads the string, if it encounters $A$, we ask it to call the function $\mathtt{draw(length)}$ that draws a line of specified length, and if it encounters a $B$, then we call $\mathtt{skip(length)}$ which skips forward by a specified length. Now we reinterpret each of the evolutionary stages above with these function calls</p>
+<ol>
+<li>A $\iff$ $\mathtt{draw(1)}$.</li>
+<li>ABA $\iff$ $\mathtt{draw(1/3)}$, $\mathtt{skip(1/3)}$, $\mathtt{draw(1/3)}$</li>
+<li>ABABBBABA $\iff$ $\mathtt{draw(1/3)}$, $\mathtt{skip(1/3)}$, $\mathtt{draw(1/3)}$, $\mathtt{skip(1/3)}$, $\dots$, $\mathtt{draw(1/3)}$</li>
+<li>$\dots$</li>
+</ol>
+<p>The following is a (5-iteration) visual of the compiler doing exactly that!</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/Cantor.mp4">Your browser does not support the video tag.</video>
+
+
+<p>That is to say, encoded in the word generated by the string rewriting system are the rules to draw the fractal that we started off wanting to describe! In fact, this way of making the compiler understand what we want it to do, is very reminiscent of me explaining in words what I want <em>you</em> to do when I ask you to draw the Cantor set.</p>
+<p>While the cantor set is one of the simpler fractals to draw, it is possible to extend this humble idea to any other complicated fractal! In fact, the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/L-system">wiki for L-system</a> provides the rules for a number of basic fractals! The standard set of alphabets are A and B (or sometimes F, G) in addition to which there are also $+$ and $-$ which tell the compiler to rotate in a given direction by a specified angle. In some rare cases, there is one other alphabet that stands for “do nothing”. This opens up a new realm of possibilities. If we could get our hands on the production rules and the axioms for a given desired fractal, then it should be possible to draw that fractal without writing any ad-hoc very specialized code. We could build a fractal engine!</p>
+<h3 id="Building-an-engine"><a href="#Building-an-engine" class="headerlink" title="Building an engine"></a>Building an engine</h3><p>Posted below is a code snippet of the engine I built to generate new rules and then draw the interpretation of the generated rules. This engine is equipped with the standard set of interpretations.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LSystem</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, axiom, rules, x, y, length, dtheta</span>):</span></span><br><span class="line">        self.axiom = axiom <span class="comment"># axiom</span></span><br><span class="line">        self.sentence = axiom <span class="comment"># current sentence</span></span><br><span class="line">        self.rules = rules <span class="comment"># prod_rules</span></span><br><span class="line">        self.x0 = x <span class="comment"># initial x value</span></span><br><span class="line">        self.y0 = y <span class="comment"># initial y-value</span></span><br><span class="line">        self.x = x <span class="comment"># variable x value</span></span><br><span class="line">        self.y = y <span class="comment"># variable y value</span></span><br><span class="line">        self.theta = <span class="number">0</span> <span class="comment"># initial angle</span></span><br><span class="line">        self.length = length <span class="comment"># length to draw/skip</span></span><br><span class="line">        self.dtheta = dtheta <span class="comment"># specified angle of rotation</span></span><br><span class="line">        self.pts = [[self.x, self.y, <span class="number">0.0</span>]] <span class="comment"># collecting vertices to plot</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.x = self.xInit <span class="comment"># every iteration, we start over</span></span><br><span class="line">        self.y = self.yInit <span class="comment"># every iteration, we start over</span></span><br><span class="line">        self.theta = <span class="number">0</span> <span class="comment"># every iteration, we start over</span></span><br><span class="line">        self.length *= <span class="number">0.50</span> <span class="comment"># scale lengths down</span></span><br><span class="line">        newSent = <span class="string">&#x27;&#x27;</span> <span class="comment"># new sentence</span></span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> self.sentence:</span><br><span class="line">            match = <span class="literal">False</span></span><br><span class="line">            <span class="keyword">for</span> rule <span class="keyword">in</span> self.rules: <span class="comment"># for each prododuction rule we check</span></span><br><span class="line">                <span class="keyword">if</span> (rule[<span class="string">&#x27;pre&#x27;</span>] == char): <span class="comment"># if the current char is replacable</span></span><br><span class="line">                    newSent += rule[<span class="string">&#x27;post&#x27;</span>] <span class="comment"># we replace it</span></span><br><span class="line">                    match = <span class="literal">True</span></span><br><span class="line">                    <span class="keyword">break</span> <span class="comment"># move on to next char</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">not</span> match):</span><br><span class="line">                newSent += char <span class="comment"># If there was no replacement, just keep the character</span></span><br><span class="line">        self.sentence = newSent <span class="comment"># update sentence</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">draw</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> self.sentence:</span><br><span class="line">            <span class="keyword">if</span> (char == <span class="string">&#x27;F&#x27;</span> <span class="keyword">or</span> char == <span class="string">&#x27;G&#x27;</span> <span class="keyword">or</span> char == <span class="string">&#x27;A&#x27;</span> <span class="keyword">or</span> char == <span class="string">&#x27;B&#x27;</span>):</span><br><span class="line">                x2 = self.x + self.length * math.cos(self.theta)</span><br><span class="line">                y2 = self.y + self.length * math.sin(self.theta)</span><br><span class="line">                self.x = x2</span><br><span class="line">                self.y = y2</span><br><span class="line">                self.pts.append(np.array([<span class="built_in">float</span>(self.x), <span class="built_in">float</span>(self.y),<span class="number">0.0</span>]))</span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> (char == <span class="string">&#x27;+&#x27;</span>):</span><br><span class="line">                self.theta += self.dtheta</span><br><span class="line">            <span class="keyword">elif</span> (char == <span class="string">&#x27;-&#x27;</span>):</span><br><span class="line">                self.theta -= self.dtheta</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrawFractal</span>(<span class="params">Scene</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">construct</span>(<span class="params">self</span>):</span></span><br><span class="line">        systems = [] <span class="comment"># track every system on the text file</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;fractal.txt&#x27;</span>) <span class="keyword">as</span> text:</span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> text:</span><br><span class="line">                stringList = re.split(<span class="string">&#x27;,|\n&#x27;</span>, line) <span class="comment"># each line is a separate system</span></span><br><span class="line">                <span class="comment"># reading in all the inputs:</span></span><br><span class="line">                axiom = stringList[<span class="number">1</span>]</span><br><span class="line">                angle = math.radians(<span class="built_in">int</span>(stringList[<span class="number">2</span>]))</span><br><span class="line">                length = <span class="built_in">int</span>(stringList[<span class="number">3</span>])</span><br><span class="line">                x, y = <span class="built_in">int</span>(stringList[<span class="number">4</span>]), <span class="built_in">int</span>(stringList[<span class="number">5</span>])</span><br><span class="line">                rulesList = stringList[<span class="number">6</span>].split()</span><br><span class="line">                rules = []</span><br><span class="line">                <span class="keyword">for</span> rule <span class="keyword">in</span> rulesList:</span><br><span class="line">                    rules.append(&#123;</span><br><span class="line">                        <span class="string">&#x27;pre&#x27;</span>: rule.split(<span class="string">&#x27;-&gt;&#x27;</span>)[<span class="number">0</span>],</span><br><span class="line">                        <span class="string">&#x27;post&#x27;</span>: rule.split(<span class="string">&#x27;-&gt;&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">                    &#125;)</span><br><span class="line">                systems.append(LSystem(axiom, rules, x, y, length, angle))</span><br><span class="line"></span><br><span class="line">        curr = systems[<span class="number">4</span>] <span class="comment"># the fractal you want to draw</span></span><br><span class="line">        <span class="built_in">ord</span> = -<span class="number">1</span> <span class="comment"># the order of complexity</span></span><br><span class="line">        path = [] <span class="comment"># to keep track of points</span></span><br><span class="line">        max_order = <span class="number">8</span> <span class="comment"># the maximum complexity</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(max_order):</span><br><span class="line">            <span class="built_in">ord</span> += <span class="number">1</span></span><br><span class="line">            curr.generate() <span class="comment"># generate the new word</span></span><br><span class="line">            curr.draw() <span class="comment"># interpret and draw it (generate some points)</span></span><br><span class="line">            path.append(np.array(curr.pts)) <span class="comment"># add points to path</span></span><br><span class="line">            curr.pts = [[x, y, <span class="number">0.0</span>]] <span class="comment"># reset points to draw next order</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>All relevant code can be found in my Github.</p>
+<h2 id="Animations"><a href="#Animations" class="headerlink" title="Animations"></a>Animations</h2><p>Now equipped with the production rules for various beautiful fractals, and this engine, all I had to do is hook this up to manim, make the data compatible across the two platforms and generate some beautiful animations to show off in my blog. Let’s be honest, as cool as this blog post was, you and I both know that we are here to see cool animations of pretty things. So I won’t torture you any further with words.</p>
+<p>Here are some animations of fractals evolving through their iterations</p>
+<p>The Gosper curve (or flow snake):</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/Gosper_evolution.mp4">Your browser does not support the video tag.</video>
+
+<p>The (Arrowhead) Sirpinsky triangle:</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/ArrowHead_evolution.mp4">Your browser does not support the video tag.</video>
+
+<p>The Hilbert curve</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/Hilbert_evolution.mp4">Your browser does not support the video tag.</video>
+
+<p>The Koch snowflake</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/Snowflake_full_evolution.mp4">Your browser does not support the video tag.</video>
+
+
+<p>In addition to these evolutions, here are some more fractals that are drawn out</p>
+<p>Gosper low-resolution ($n$ small):</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/Gosper_lower_res.mp4">Your browser does not support the video tag.</video>
+
+<p>Gosper high-resolution ($n$ high):</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/Gosper_high_res.mp4">Your browser does not support the video tag.</video>
+
+<p>Arrowhead Sirpinsky:</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/ArrowHead.mp4">Your browser does not support the video tag.</video>
+
+<p>Hilbert curve:</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/Hilbert.mp4">Your browser does not support the video tag.</video>
+
+<p>Partial snowflake:</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/SnowFlake.mp4">Your browser does not support the video tag.</video>
+
+<p>Dragon curve (The prettiest one in my opinion):</p>
+<video class="trial" autoplay loop muted="true"><source type="video/mp4" src="http://asuresh213.github.io/2021/11/27/2/Dragon_Curve.mp4">Your browser does not support the video tag.</video>
+
+
+
+<font style="font-size:0.55vw;">  
+
+
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">In the animation, the top copies are rotated because $y$-axis runs top-down in the Python canvas.</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">Technially we never explicitly squeeze all of $\mathbb{R}$ into the unit square, just larger and larger chunks of it. </span></li></ol></div></div></font><a href="#fnref:2" rev="footnote"> ↩</a>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/research/">Research</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hilbert%E2%80%99s-curve"><span class="toc-number">1.</span> <span class="toc-text">Hilbert’s curve</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#L-systems"><span class="toc-number">2.</span> <span class="toc-text">L-systems</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Context-rambling"><span class="toc-number">2.1.</span> <span class="toc-text">Context rambling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#L-system-background"><span class="toc-number">2.2.</span> <span class="toc-text">L-system background</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Building-an-engine"><span class="toc-number">2.3.</span> <span class="toc-text">Building an engine</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Animations"><span class="toc-number">3.</span> <span class="toc-text">Animations</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/11/27/2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/11/27/2/&text=L-systems and generalized fractal generation"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/11/27/2/&title=L-systems and generalized fractal generation"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/11/27/2/&is_video=false&description=L-systems and generalized fractal generation"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=L-systems and generalized fractal generation&body=Check out this article: http://example.com/2021/11/27/2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/11/27/2/&title=L-systems and generalized fractal generation"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/11/27/2/&title=L-systems and generalized fractal generation"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/11/27/2/&title=L-systems and generalized fractal generation"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/11/27/2/&title=L-systems and generalized fractal generation"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/11/27/2/&name=L-systems and generalized fractal generation&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/11/27/2/&t=L-systems and generalized fractal generation"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2023
+    Arun Suresh
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/research/">Research</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://asuresh213.github.io/2021/10/28/L-system/elephant.png">
 <meta property="article:published_time" content="2021-10-28T23:52:19.000Z">
-<meta property="article:modified_time" content="2021-11-09T20:46:58.738Z">
+<meta property="article:modified_time" content="2023-10-30T00:49:35.329Z">
 <meta property="article:author" content="Arun Suresh">
 <meta property="article:tag" content="Programming">
 <meta property="article:tag" content="Topology">
@@ -77,17 +77,19 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/cv/">CV</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/research/">Research</a></li>
          
-          <li><a target="_blank" rel="noopener" href="http://github.com/asuresh213">Projects</a></li>
+          <li><a href="/teaching/">Teaching</a></li>
         
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2021/11/27/2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post " href="/2021/06/05/Integral/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -143,6 +145,8 @@
     <div class="postdate">
       
         <time datetime="2021-10-28T23:52:19.000Z" itemprop="datePublished">2021-10-28</time>
+        
+        (Updated: <time datetime="2023-10-30T00:49:35.329Z" itemprop="dateModified">2023-10-29</time>)
         
       
     </div>
@@ -205,7 +209,7 @@
 <p>We are finally ready to state the consequence.</p>
 <p>$$\text{The map } \phi^{-1}\circ \psi\circ \Phi: \mathbb{R}\times \mathbb{R} \to \mathbb{R} \text{ is a bijection!}$$<br>Since it is a composition of bijections. Thus $\mathbb{R} \times \mathbb{R}$ and $\mathbb{R}$ have the same number of points!<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
 <p>I have, at this point, rambled on more than I had initially intended to; and I think this is a pretty good stopping point for part 1. In part 2 we will explore a technique to generate fractals using these things called L-systems and hopefully try to understand the overarching concept of a Semi-Thue system.</p>
-<p><font style="font-size:0.75vw;">  <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;"><font style="color:#00b5d9;"><strong>Easy Exercise 1:</strong></font> Given this visual intuition, try to now solve for $p_1$ in terms of $x$ and<br>verify that the closed form of $\varphi$ presented in the post is indeed what $p_1$ is.</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;"><font style="color:#00b5d9;"><strong>Exercise 2:</strong></font> Why can’t we just rewind $\varphi$ to get a surjection? (<font style="color:#00b5d9;"><strong>hint:</strong></font> consider $0.090909\dots$)</span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;"><font style="color:#00b5d9;"><strong>Exercise 3:</strong></font> Generalize this proof to obtain a bijection between $\mathbb{R}^n$ and $\mathbb{R}$. </span></li></ol></div></div></font><a href="#fnref:3" rev="footnote"> ↩</a></p>
+<p><font style="font-size:0.65vw;">  <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;"><font style="color:#00b5d9;"><strong>Easy Exercise 1:</strong></font> Given this visual intuition, try to now solve for $p_1$ in terms of $x$ and<br>verify that the closed form of $\varphi$ presented in the post is indeed what $p_1$ is.</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;"><font style="color:#00b5d9;"><strong>Exercise 2:</strong></font> Why can’t we just rewind $\varphi$ to get a surjection? (<font style="color:#00b5d9;"><strong>hint:</strong></font> consider $0.090909\dots$)</span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;"><font style="color:#00b5d9;"><strong>Exercise 3:</strong></font> Generalize this proof to obtain a bijection between $\mathbb{R}^n$ and $\mathbb{R}$. </span></li></ol></div></div></font><a href="#fnref:3" rev="footnote"> ↩</a></p>
 
   </div>
 </article>
@@ -221,11 +225,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/cv/">CV</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/research/">Research</a></li>
          
-          <li><a target="_blank" rel="noopener" href="http://github.com/asuresh213">Projects</a></li>
+          <li><a href="/teaching/">Teaching</a></li>
         
       </ul>
     </div>
@@ -267,7 +271,7 @@
     Copyright &copy;
     
     
-    2021
+    2021-2023
     Arun Suresh
   </div>
   <div class="footer-right">
@@ -276,11 +280,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/cv/">CV</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/research/">Research</a></li>
          
-          <li><a target="_blank" rel="noopener" href="http://github.com/asuresh213">Projects</a></li>
+          <li><a href="/teaching/">Teaching</a></li>
         
       </ul>
     </nav>
