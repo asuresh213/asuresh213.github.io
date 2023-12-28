@@ -14,7 +14,7 @@
 <meta property="og:description" content="Question statement:Given a string $\texttt{path}$, where $\texttt{path[i] &#x3D; ‘N’, ‘S’, ‘E’ or ‘W’}$, each representing moving one unit north, south, east, or west, respectively. You start at the origin">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-08T21:56:58.000Z">
-<meta property="article:modified_time" content="2023-12-27T21:24:33.088Z">
+<meta property="article:modified_time" content="2023-12-28T23:22:23.977Z">
 <meta property="article:author" content="Arun Suresh">
 <meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary">
@@ -88,8 +88,6 @@
         <li><a class="icon" aria-label="Previous post " href="/2021/05/08/leet/1578/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post " href="/2021/05/08/leet/1758/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
         <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
@@ -142,7 +140,7 @@
       
         <time datetime="2021-05-08T21:56:58.000Z" itemprop="datePublished">2021-05-08</time>
         
-        (Updated: <time datetime="2023-12-27T21:24:33.088Z" itemprop="dateModified">2023-12-27</time>)
+        (Updated: <time datetime="2023-12-28T23:22:23.977Z" itemprop="dateModified">2023-12-28</time>)
         
       
     </div>
@@ -164,16 +162,16 @@
   <div class="content" itemprop="articleBody">
     <h1 id="Question-statement"><a href="#Question-statement" class="headerlink" title="Question statement:"></a>Question statement:</h1><p>Given a string $\texttt{path}$, where $\texttt{path[i] = ‘N’, ‘S’, ‘E’ or ‘W’}$, each representing moving one unit north, south, east, or west, respectively. You start at the origin (0, 0) on a 2D plane and walk on the path specified by path. Return $\texttt{true}$ if the path crosses itself at any point, that is, if at any time you are on a location you have previously visited. Return $\texttt{false}$ otherwise.</p>
 <h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h3 id="Main-idea"><a href="#Main-idea" class="headerlink" title="Main idea:"></a>Main idea:</h3><ul>
-<li>Start a new list $\texttt{pos = [(0,0)]}$</li>
+<li>Start a new (hash) set $\texttt{pos = [(0,0)]}$</li>
 <li>Go through $\texttt{path}$ and for each new direction, calculuate current position in the 2D grid.</li>
 <li>Check if current position is already in $\texttt{pos}$. If so, return $\texttt{True}$.</li>
 <li>If not, append $\texttt{pos}$ with the current position.</li>
 <li>Return $\texttt{False}$ if end of $\texttt{path}$ is reached.</li>
 </ul>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPathCrossing</span>(<span class="params">self, path: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">    posx = <span class="number">0</span></span><br><span class="line">    posy = <span class="number">0</span></span><br><span class="line">    p = [(<span class="number">0</span>,<span class="number">0</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(path)):</span><br><span class="line">        <span class="keyword">if</span>(path[i] == <span class="string">&#x27;N&#x27;</span>):</span><br><span class="line">            posy += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(path[i] == <span class="string">&#x27;S&#x27;</span>):</span><br><span class="line">            posy -=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(path[i] == <span class="string">&#x27;E&#x27;</span>):</span><br><span class="line">            posx +=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(path[i] == <span class="string">&#x27;W&#x27;</span>):</span><br><span class="line">            posx -=<span class="number">1</span></span><br><span class="line">        pos = (posx, posy)</span><br><span class="line">        <span class="keyword">if</span>(pos <span class="keyword">in</span> p):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        p.append(pos)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPathCrossing</span>(<span class="params">self, path: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">    posx = <span class="number">0</span></span><br><span class="line">    posy = <span class="number">0</span></span><br><span class="line">    p = <span class="built_in">set</span>()</span><br><span class="line">    p.add((posx, posy))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(path)):</span><br><span class="line">        <span class="keyword">if</span>(path[i] == <span class="string">&#x27;N&#x27;</span>):</span><br><span class="line">            posy += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(path[i] == <span class="string">&#x27;S&#x27;</span>):</span><br><span class="line">            posy -=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(path[i] == <span class="string">&#x27;E&#x27;</span>):</span><br><span class="line">            posx +=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(path[i] == <span class="string">&#x27;W&#x27;</span>):</span><br><span class="line">            posx -=<span class="number">1</span></span><br><span class="line">        pos = (posx, posy)</span><br><span class="line">        <span class="keyword">if</span>(pos <span class="keyword">in</span> p):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        p.add(pos)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
 
 
-<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments:"></a>Comments:</h3><p>Time complexity: O(nlog(n)) (I think? – need to double check).</p>
+<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments:"></a>Comments:</h3><p>Time complexity: O(n).</p>
 <p>At the time of submission, the above solution passes leetcode submission cases in 35ms, beats 83.59% of users. It uses 17.2MB of memory, beating 72.13% of users.</p>
 
   </div>
