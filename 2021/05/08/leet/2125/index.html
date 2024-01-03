@@ -14,7 +14,7 @@
 <meta property="og:description" content="Question statement: Anti-theft security devices are activated inside a bank. You are given a 0-indexed binary string array bank representing the floor plan of the bank, which is an m x n 2D matrix. $\">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-08T21:56:58.000Z">
-<meta property="article:modified_time" content="2024-01-03T17:03:33.041Z">
+<meta property="article:modified_time" content="2024-01-03T17:15:53.608Z">
 <meta property="article:author" content="Arun Suresh">
 <meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary">
@@ -85,7 +85,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post " href="/2021/05/08/leet/1578/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post " href="/2021/05/08/leet/1897/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post " href="/2021/05/08/leet/217/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -142,7 +142,7 @@
       
         <time datetime="2021-05-08T21:56:58.000Z" itemprop="datePublished">2021-05-08</time>
         
-        (Updated: <time datetime="2024-01-03T17:03:33.041Z" itemprop="dateModified">2024-01-03</time>)
+        (Updated: <time datetime="2024-01-03T17:15:53.608Z" itemprop="dateModified">2024-01-03</time>)
         
       
     </div>
@@ -170,7 +170,7 @@
 <li>Laser beams are independent, i.e., one beam does not interfere nor join with another.</li>
 </ul>
 </blockquote>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h3 id="Main-idea"><a href="#Main-idea" class="headerlink" title="Main idea:"></a>Main idea:</h3><p>Item 2 is basically a red-herring (or a non-issue). Any row without a laser device can essentially be ignored, and the constraints can be updated to saying “each row contains at least one device and lasers only exist between devices placed in consequetive rows”. Now, this reduces to a counting problem. If row $\texttt{r}$ has $n_r$ devices and row $\texttt{r+1}$ has $n_{r+1}$ devices, then the total number of lasers between the two rows is $n_r\times n_{r+1}$. Thus the total number of lasers is precisely<br>$$\texttt{res} = \sum_{r&gt;0} n_{r} n_{r-1}$$</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h3 id="Main-idea"><a href="#Main-idea" class="headerlink" title="Main idea:"></a>Main idea:</h3><p>Item 2 is basically a red-herring (or a non-issue). Any row without a laser device can essentially be ignored, and the constraints can be updated to saying “each row contains at least one device and lasers only exist between devices placed in consecutive rows”. Now, this reduces to a counting problem. If row $\texttt{r}$ has $n_r$ devices and row $\texttt{r+1}$ has $n_{r+1}$ devices, then the total number of lasers between the two rows is $n_r\times n_{r+1}$. Thus the total number of lasers is precisely<br>$$\texttt{res} = \sum_{r&gt;0} n_{r} n_{r-1}$$</p>
 <h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">numberOfBeams</span>(<span class="params">self, bank: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    prev = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> bank:</span><br><span class="line">        cur = i.count(<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span>(cur == <span class="number">0</span>):</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        res += prev*cur</span><br><span class="line">        prev = cur</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
 <h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments:"></a>Comments:</h3><p>Time complexity: O($\texttt{len(bank)}$)</p>
