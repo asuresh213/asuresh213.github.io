@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Question statement: You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?  SolutionThough th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Problem 70">
+<meta property="og:url" content="http://asuresh213.github.io/2021/05/08/leet/70/index.html">
+<meta property="og:site_name" content="Arun Suresh">
+<meta property="og:description" content="Question statement: You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?  SolutionThough th">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-08T22:56:58.000Z">
+<meta property="article:modified_time" content="2024-01-18T13:55:16.118Z">
+<meta property="article:author" content="Arun Suresh">
+<meta property="article:tag" content="Programming">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Problem 70</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2021/05/08/leet/455/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/05/08/leet/872/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2021/05/08/leet/70/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2021/05/08/leet/70/&text=Problem 70"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2021/05/08/leet/70/&title=Problem 70"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2021/05/08/leet/70/&is_video=false&description=Problem 70"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Problem 70&body=Check out this article: http://asuresh213.github.io/2021/05/08/leet/70/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2021/05/08/leet/70/&title=Problem 70"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/70/&title=Problem 70"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/70/&title=Problem 70"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/70/&title=Problem 70"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2021/05/08/leet/70/&name=Problem 70&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2021/05/08/leet/70/&t=Problem 70"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Question-statement"><span class="toc-number">1.</span> <span class="toc-text">Question statement:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Main-idea-approach-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Main idea - approach 1:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Main-idea-approach-2"><span class="toc-number">2.0.2.</span> <span class="toc-text">Main idea - approach 2:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Main-idea-approach-3"><span class="toc-number">2.0.3.</span> <span class="toc-text">Main idea - approach 3:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Code"><span class="toc-number">2.0.4.</span> <span class="toc-text">Code:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comments"><span class="toc-number">2.0.5.</span> <span class="toc-text">Comments:</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Problem 70
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Arun Suresh</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-08T22:56:58.000Z" itemprop="datePublished">2021-05-08</time>
+        
+        (Updated: <time datetime="2024-01-18T13:55:16.118Z" itemprop="dateModified">2024-01-18</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Programming/" rel="tag">Programming</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Question-statement"><a href="#Question-statement" class="headerlink" title="Question statement:"></a>Question statement:</h1><blockquote>
+<p>You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</p>
+</blockquote>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>Though this problem keeps yelling dynamic programming in our faces, we will provide three increasingly more efficient solutions (the second of which is a dp solution).</p>
+<h3 id="Main-idea-approach-1"><a href="#Main-idea-approach-1" class="headerlink" title="Main idea - approach 1:"></a>Main idea - approach 1:</h3><p>Cut away all programattic instincts, and look at this as a purely combinatorial problem. We split the solution into cases indexed by the number $k$ of “2 steps” we take on our way to get to the top. </p>
+<ul>
+<li>Case $k=0$: This can be done exactly $1 = {n \choose 0}$ ways.</li>
+<li>Case $k=1$: In this case, we are allowed to take one “2 step” and $n-2$ regular steps. This is the same as filling n-1 spots with all but one ones and exactly one 2. The number of ways to do this is $$n-1 = {n-1 \choose 1}$$</li>
+<li>Case $k = 2$: In thise case, we have two “2 steps” and $n-4$ regular steps. This is the same as filling n-2 spots with all but two ones, and exactly two 2s. The number of ways to do this is $${n-2 \choose 2}$$<br>and so on until $k=\lfloor n/2\rfloor$. </li>
+</ul>
+<p>Thus the total number of ways is equal to<br>$$T_n = \sum_{k=0}^{\lfloor n/2 \rfloor} {n-k \choose k} \qquad (\star)$$</p>
+<p>This is a bad solution computationally because to calculate ${n \choose r}$ via the pascal’s triangle, we need to generate a pascal’s triangle which involves $\sum_{i=1}^n k(k+1)$ operations, which is O($n^3$) operations. </p>
+<p>Unrelated update: <a target="_blank" rel="noopener" href="https://github.com/python/cpython/issues/81476">This github issue/resolution</a> has some really cool ideas to optimize computing the binomial coefficient. So the inbuilt comb() is optimized to be far better than the Pascal’s triangle approach, it looks like.</p>
+<h3 id="Main-idea-approach-2"><a href="#Main-idea-approach-2" class="headerlink" title="Main idea - approach 2:"></a>Main idea - approach 2:</h3><p>Approach 1 is not all that bad if we could find a closed form expression for $(\star)$, then it would essentially be an $O(1)$ computation (or at worst O(log(n)) if exponentials are involved). Funnily enough, this closed form is most naturally obtained by actually thinking about a dp approach to this problem. In particular, the key realization is as follows: To take the $k^{th}$ step, we could take one step from the $(k-1)^{th}$ step, or a “2 step” from the $(k-2)^{th}$ step. Thus $T_n = T_{n-1} + T_{n-2}$ - and then it occurs to us:</p>
+<p>$$\texttt{Fibonacci.}$$</p>
+<p>So, when the excitement subdues, we realize $T_n = F_{n+1}$ where $F_r$ is the $r^{th}$ Fibonacci number.</p>
+<p>Note: It is $F_{n+1}$ because we need to initialize the Fibonacci sequence with an extra 1 to kickstart the recursion, which correspond to climbing 0 stairs – which is not a valid field condition. </p>
+<h3 id="Main-idea-approach-3"><a href="#Main-idea-approach-3" class="headerlink" title="Main idea - approach 3:"></a>Main idea - approach 3:</h3><p>Now our math brains kick in, and remind us that $F_n$ has a closed form expression, namely:</p>
+<p>$$F_n = \frac{1}{\sqrt{5}}\left[\phi^n + \phi^{-n}\right]$$<br>where $\phi$ is the golden ratio, with value<br>$$\phi = \frac{1+\sqrt{5}}{2}$$</p>
+<p>which is a pretty slick solution.</p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><p>Approach 1:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">climbStairs1</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    limit = n//<span class="number">2</span>+<span class="number">1</span></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(limit+<span class="number">1</span>):</span><br><span class="line">        res += comb(n-i, i)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<p>Approach 2:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">climbStairs</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    fib = [<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>):</span><br><span class="line">        fib.append(fib[-<span class="number">1</span>] + fib[-<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> fib[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<p>Approach 3:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">climbStairs</span>(<span class="params">self, n:<span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    phi = (<span class="number">1</span>+sqrt(<span class="number">5</span>))/<span class="number">2</span></span><br><span class="line">    phi_ = (<span class="number">1</span>-sqrt(<span class="number">5</span>))/<span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(<span class="number">1</span>/sqrt(<span class="number">5</span>)*(phi**(n+<span class="number">1</span>) - phi_**(n+<span class="number">1</span>)))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments:"></a>Comments:</h3><p>Time complexity for approach 1: O(n/2*T(math.comb))<br>Time complexity for approach 2: O(n)<br>Time complexity for approach 3: O(log n)</p>
+<p>At the time of submission, the approach 1 passes leetcode submission cases in 33ms, beats 81.5% of users. It uses 17.26MB of memory, beating 31.07% of users.<br>At the time of submission, the above solution passes leetcode submission cases in 32ms, beats 84.91% of users. It uses 17.26MB of memory, beating 31.07% of users.<br>At the time of submission, the above solution passes leetcode submission cases in 30ms, beats 91.43% of users. It uses 17.15MB of memory, beating 45.94% of users.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Question-statement"><span class="toc-number">1.</span> <span class="toc-text">Question statement:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Main-idea-approach-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Main idea - approach 1:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Main-idea-approach-2"><span class="toc-number">2.0.2.</span> <span class="toc-text">Main idea - approach 2:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Main-idea-approach-3"><span class="toc-number">2.0.3.</span> <span class="toc-text">Main idea - approach 3:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Code"><span class="toc-number">2.0.4.</span> <span class="toc-text">Code:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comments"><span class="toc-number">2.0.5.</span> <span class="toc-text">Comments:</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2021/05/08/leet/70/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2021/05/08/leet/70/&text=Problem 70"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2021/05/08/leet/70/&title=Problem 70"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2021/05/08/leet/70/&is_video=false&description=Problem 70"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Problem 70&body=Check out this article: http://asuresh213.github.io/2021/05/08/leet/70/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2021/05/08/leet/70/&title=Problem 70"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/70/&title=Problem 70"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/70/&title=Problem 70"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/70/&title=Problem 70"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2021/05/08/leet/70/&name=Problem 70&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2021/05/08/leet/70/&t=Problem 70"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2024
+    Arun Suresh
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
