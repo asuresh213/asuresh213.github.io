@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Question statement You are given an array of strings arr. A string s is formed by the concatenation of a subsequence of arr that has unique characters. Return the maximum possible length of s.  Soluti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Problem 1239">
+<meta property="og:url" content="http://asuresh213.github.io/2021/05/08/leet/1239/index.html">
+<meta property="og:site_name" content="Arun Suresh">
+<meta property="og:description" content="Question statement You are given an array of strings arr. A string s is formed by the concatenation of a subsequence of arr that has unique characters. Return the maximum possible length of s.  Soluti">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-08T22:56:58.000Z">
+<meta property="article:modified_time" content="2024-01-24T19:35:28.076Z">
+<meta property="article:author" content="Arun Suresh">
+<meta property="article:tag" content="Programming">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Problem 1239</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2021/05/08/leet/1235/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/05/08/leet/1207/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2021/05/08/leet/1239/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2021/05/08/leet/1239/&text=Problem 1239"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2021/05/08/leet/1239/&title=Problem 1239"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2021/05/08/leet/1239/&is_video=false&description=Problem 1239"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Problem 1239&body=Check out this article: http://asuresh213.github.io/2021/05/08/leet/1239/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2021/05/08/leet/1239/&title=Problem 1239"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/1239/&title=Problem 1239"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/1239/&title=Problem 1239"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/1239/&title=Problem 1239"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2021/05/08/leet/1239/&name=Problem 1239&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2021/05/08/leet/1239/&t=Problem 1239"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Question-statement"><span class="toc-number">1.</span> <span class="toc-text">Question statement</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-new-approach"><span class="toc-number">2.0.1.</span> <span class="toc-text">A new approach:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Main-idea"><span class="toc-number">2.0.2.</span> <span class="toc-text">Main idea:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Code"><span class="toc-number">2.0.3.</span> <span class="toc-text">Code:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comments"><span class="toc-number">2.0.4.</span> <span class="toc-text">Comments:</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Problem 1239
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Arun Suresh</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-08T22:56:58.000Z" itemprop="datePublished">2021-05-08</time>
+        
+        (Updated: <time datetime="2024-01-24T19:35:28.076Z" itemprop="dateModified">2024-01-24</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Programming/" rel="tag">Programming</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Question-statement"><a href="#Question-statement" class="headerlink" title="Question statement"></a>Question statement</h1><blockquote>
+<p>You are given an array of strings arr. A string s is formed by the concatenation of a subsequence of arr that has unique characters. Return the maximum possible length of s.</p>
+</blockquote>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>This one took me a while to solve. For the longest time, I was trying to implement a DP solution and was consistently going into the realm of quadratic computation time, to the point where a dp approach seemed suboptimal. Ultimately, the hitch was with the fact that at any given element arr[i], there is no way to have a consistent winner stored at dp[i-1] (since arr[i] could merge with an earlier string combination to create a new winner), so I would have to go check every element of dp until i-1. But this is no better than going through the array with a double pointer. </p>
+<h3 id="A-new-approach"><a href="#A-new-approach" class="headerlink" title="A new approach:"></a>A new approach:</h3><p>After struggling for 30+ minutes and failing, I read the discussion section where people pointed to an algorithm called backtracking. I was vaguely aware of this before, but until yesterday I had never invested the time or resources to learn or try it out. <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=gBC_Fd8EE8A">This youtube video</a> gave me a pretty good feel for the algorithm. Ultimately, backtracking needs to be in anyone’s potential plan of action if a given problem evolves based on prior choices, and more importantly, these choices (if suboptimal) should potentially be corrected to pave way to a better optimal choice. That is to say, think backtracking if the evolution of your problem is not linear/monotonic (if it is linear/monotonic, then it is dp) – that it to say, your current choice can is not dictated by only a handful of previous choices which encode the culmination of the evolution thus far. </p>
+<p>For instance, in the house robber problem, the maximum profit from house i was only dependent on the maximum profit from houses i-2, i-3, which contained in them the culmination of the evolution of the system thus far. Similarly in the falling sums problem, the minimum falling sum ending in index [i][j] was only dictated by the culmination of the evolution of the system at indices [i-1][j-1], [i-1][j] and [i-1][j+1]. </p>
+<p>However, this problem is not like that. For example, take the third provided example </p>
+<p>arr = [“cha”, “r”, “act”, “ers”]</p>
+<p>In this case, a 1-d dp approach might try and store the best word at dp[i], but the best word at index [i] might not be an evolution of the best word at index [j] for some j&lt; i. For instance, here dp[1] would store” char” but dp[3] would store “chaers” or “acters” neither of which is an evolution of “char”. So in some sense, our algorithm needs to forget “char” from dp[1] to get to the right solution. How can we make an argument forget an unnecessary calculation?</p>
+<p>$$\begin{center} \texttt{recursion.} \end{center}$$</p>
+<p>This is at the heart of backtracking. </p>
+<h3 id="Main-idea"><a href="#Main-idea" class="headerlink" title="Main idea:"></a>Main idea:</h3><p>Make a sequence of choices recursively everytime it is possible to make progress. When it is not possible to make progress (i.e, you’ve gotten to the longest possible word given where you started), then store the length of that word in an array. By the time you get to the previous call, your function would remember the possible lengths, but will not go into the same choices again, and would try to take a different route. Let’s illustrate it with an example:</p>
+<p>For instance: We start with</p>
+<ul>
+<li>cur_logest_word = “cha” </li>
+<li>Can merge “r”, so cur_longest_word = “char”</li>
+<li>Can merge no more, so store 4 into a lengths array, and return to the previous call. </li>
+<li>In this call, cur_longest_word = “cha” and now check for validity against “act”, which is invalid, so move on. </li>
+<li>Finally, “cha” -&gt; “ers” done. Store 6 into a lengths array. </li>
+</ul>
+<p>This process tells us the longest possible word attainable starting with “cha” is 6. Now, repeat this starting with “r”, and then “act” and finally “ers”, tracking the longest possible word in each case. Finally, return the max of all these maximal lengths.</p>
+<p>Note: it is possible to not waste space by using a list, but I can’t think of a short creative way to do it off the top if my head. I’ll maybe get around to writing that up after a few days of thinking about it.</p>
+<p>Note 2: Oh also I do a pre-processing step where I remove any string that has repeated characters from arr. </p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pre_processing</span>(<span class="params">self, arr</span>):</span></span><br><span class="line">    point = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span>(arr != [] <span class="keyword">and</span> point&lt;<span class="built_in">len</span>(arr)):</span><br><span class="line">        c = Counter(arr[point])</span><br><span class="line">        removed = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> c:</span><br><span class="line">            <span class="keyword">if</span>(c[j] &gt; <span class="number">1</span>):</span><br><span class="line">                arr.pop(point)</span><br><span class="line">                removed = <span class="literal">True</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">if</span>(removed == <span class="literal">False</span>):</span><br><span class="line">            point+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">can_combine</span>(<span class="params">self, str1, str2</span>):</span></span><br><span class="line">        set1 = <span class="built_in">set</span>(str1)</span><br><span class="line">        set2 = <span class="built_in">set</span>(str2)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> str1:</span><br><span class="line">            <span class="keyword">if</span>(i <span class="keyword">in</span> set2):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> str2:</span><br><span class="line">            <span class="keyword">if</span>(i <span class="keyword">in</span> set1):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, arr, cur_word, lengths</span>):</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(arr)):</span><br><span class="line">        <span class="keyword">if</span>(self.can_combine(cur_word, arr[j])):</span><br><span class="line">            lengths.append(<span class="built_in">len</span>(cur_word+arr[j]))</span><br><span class="line">            lengths = self.helper(arr[j+<span class="number">1</span>:], cur_word+arr[j], lengths)</span><br><span class="line">    <span class="keyword">return</span> lengths</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxLength</span>(<span class="params">self, arr: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    max_len = <span class="number">0</span></span><br><span class="line">    arr = self.pre_processing(arr)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(arr == []):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(arr)):</span><br><span class="line">        max_len = <span class="built_in">max</span>(max_len, <span class="built_in">max</span>(self.helper(arr[i:], arr[i], [<span class="built_in">len</span>(arr[i])])))</span><br><span class="line">    <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
+
+<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments:"></a>Comments:</h3><p>Time complexity: O(n^2) on average. </p>
+<p>At the time of submission, the above solution passes leetcode submission cases in 92ms, beats 57.31% of users. It uses 16.72MB of memory, beating 74.50% of users.</p>
+<p>I also had a 2-d dp solution idea, which stores in dp[i][j] the best possible word that can be made using strings between indices i and j. Then to calculate dp[i][j+1], we check every non-zero upper triangular element in our array to find the best word. Maybe one day I wil code this and see if this ends up being more optimal.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Question-statement"><span class="toc-number">1.</span> <span class="toc-text">Question statement</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-new-approach"><span class="toc-number">2.0.1.</span> <span class="toc-text">A new approach:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Main-idea"><span class="toc-number">2.0.2.</span> <span class="toc-text">Main idea:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Code"><span class="toc-number">2.0.3.</span> <span class="toc-text">Code:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comments"><span class="toc-number">2.0.4.</span> <span class="toc-text">Comments:</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2021/05/08/leet/1239/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2021/05/08/leet/1239/&text=Problem 1239"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2021/05/08/leet/1239/&title=Problem 1239"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2021/05/08/leet/1239/&is_video=false&description=Problem 1239"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Problem 1239&body=Check out this article: http://asuresh213.github.io/2021/05/08/leet/1239/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2021/05/08/leet/1239/&title=Problem 1239"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/1239/&title=Problem 1239"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/1239/&title=Problem 1239"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2021/05/08/leet/1239/&title=Problem 1239"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2021/05/08/leet/1239/&name=Problem 1239&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2021/05/08/leet/1239/&t=Problem 1239"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2024
+    Arun Suresh
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
