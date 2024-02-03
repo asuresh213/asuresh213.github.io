@@ -14,7 +14,7 @@
 <meta property="og:description" content="Question statement Given an integer array arr, partition the array into (contiguous) subarrays of length at most k. After partitioning, each subarray has their values changed to become the maximum val">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-08T22:56:58.000Z">
-<meta property="article:modified_time" content="2024-02-03T18:30:29.045Z">
+<meta property="article:modified_time" content="2024-02-03T18:33:46.004Z">
 <meta property="article:author" content="Arun Suresh">
 <meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary">
@@ -142,7 +142,7 @@
       
         <time datetime="2021-05-08T22:56:58.000Z" itemprop="datePublished">2021-05-08</time>
         
-        (Updated: <time datetime="2024-02-03T18:30:29.045Z" itemprop="dateModified">2024-02-03</time>)
+        (Updated: <time datetime="2024-02-03T18:33:46.004Z" itemprop="dateModified">2024-02-03</time>)
         
       
     </div>
@@ -168,10 +168,10 @@
 <h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>From the first hint, it was clear to me that I had to use a 1-d dp approach. </p>
 <h3 id="Main-idea"><a href="#Main-idea" class="headerlink" title="Main idea"></a>Main idea</h3><p>So let’s initialize a dp array with the intention to store the answer for position i at dp[i]. That is to say, dp[i] will store the largest sum after partitioning nums[:i+1]. Certainly dp[0] = nums[0]. Then the logic is as follows: Suppose we are at nums[i]. Then one of the $k-$ possible scenarios must happen</p>
 <ul>
-<li>Case 1: nums[i] must be alone in its own contiguous array cur, the resulting group will have a total of max(nums[i:i+1])*len(cur)</li>
-<li>Case 2: nums[i] gets grouped with nums[i-1], the resulting group will have a total of max(nums[i-1:i+1])*len(cur)</li>
+<li><strong>Case 1:</strong> nums[i] must be alone in its own contiguous array cur, the resulting group will have a total of max(nums[i:i+1])*len(cur)</li>
+<li><strong>Case 2:</strong> nums[i] gets grouped with nums[i-1], the resulting group will have a total of max(nums[i-1:i+1])*len(cur)</li>
 <li>…</li>
-<li>Case k: nums[i] gets grouped with the previous k-1 terms, the resulting group will have a total of max(nums[i-k+1:i+1])*len(cur)</li>
+<li><strong>Case k:</strong> nums[i] gets grouped with the previous k-1 terms, the resulting group will have a total of max(nums[i-k+1:i+1])*len(cur)</li>
 </ul>
 <p>Moreover, to each of these cases, we need to add the sum from the partitions that existed before cur, but this value for case $j$ is stored in $dp[i-j-1]$</p>
 <p>So $dp[i] = \texttt{$\max_j$ dp[i-j-1] + $\max$(nums[i-k+1:i+1])*len(cur)}$</p>
