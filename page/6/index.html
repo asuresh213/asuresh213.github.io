@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Turning coffee into theorems...">
+    <meta name="description" content="Simplicity is the ultimate sophestication. - Leonardo da Vinci">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Arun Suresh">
 <meta property="og:url" content="http://asuresh213.github.io/page/6/index.html">
 <meta property="og:site_name" content="Arun Suresh">
-<meta property="og:description" content="Turning coffee into theorems...">
+<meta property="og:description" content="Simplicity is the ultimate sophestication. - Leonardo da Vinci">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Arun Suresh">
 <meta name="twitter:card" content="summary">
@@ -94,7 +94,7 @@
         
         <section id="about">
   
-    <p>Turning coffee into theorems…</p>
+    <p>Simplicity is the ultimate sophestication. - Leonardo da Vinci</p>
 
   
   
@@ -153,7 +153,7 @@
     <div class="meta">
       
         
-          <time datetime="2023-12-28T06:00:00.000Z" itemprop="datePublished">2023-12-28</time>
+          <time datetime="2024-03-10T06:00:00.000Z" itemprop="datePublished">2024-03-10</time>
         
       
     </div>
@@ -161,7 +161,7 @@
 
         <span>
     
-        <a class="" href="/2023/12/28/Leetcode/">Daily programming challenges</a>
+        <a class="" href="/2024/03/10/Academic%20writing/">Academic writing</a>
     
 
 
@@ -173,7 +173,7 @@
     <div class="meta">
       
         
-          <time datetime="2023-12-28T06:00:00.000Z" itemprop="datePublished">2023-12-28</time>
+          <time datetime="2024-03-10T06:00:00.000Z" itemprop="datePublished">2024-03-10</time>
         
       
     </div>
@@ -181,27 +181,7 @@
 
         <span>
     
-        <a class="" href="/2023/12/28/Research%20writing/">Research writing</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2023-12-28T06:00:00.000Z" itemprop="datePublished">2023-12-28</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/2023/12/28/Side%20Projects/">Side projects</a>
+        <a class="" href="/2024/03/10/Non%20academic%20ventures/">Non academic writing</a>
     
 
 
@@ -251,6 +231,51 @@
     <!-- jquery -->
  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+
+<!-- SAGE stuff. Shamelessly stolen from
+      https://github.com/sheaves/sheaves.github.io/blob/master/_layouts/default.html
+    -->
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <!-- Cell definitions -->
+    <script>$(function () {
+    // Basic Python cell. Use <div class = "python">
+    // sagecell.makeSagecell({inputLocation: '.python', languages : ['python']});
+    // Basic Sage cell. Use <div class = "sage">
+    sagecell.makeSagecell({inputLocation: '.sage'});
+    // Gap cell. Use <div class = "gap">
+    sagecell.makeSagecell({inputLocation: '.gap', languages : ['gap']});
+    // R cell. Use <div class = "r">
+    sagecell.makeSagecell({inputLocation: '.r_e', linked:true, languages : ['r']});
+    // Auto evaluate Sage. Use <div class="auto">
+    sagecell.makeSagecell({inputLocation: '.auto', autoeval: 'True'});
+    // No editor, auto evaluate Sage. Use <div class="auto_out">
+    sagecell.makeSagecell({inputLocation: '.auto_out', autoeval: 'True', hide: ["editor", "evalButton", "editorToggle"]});
+   // No evalButton. Use <div class="no_eval">
+    sagecell.makeSagecell({inputLocation: '.no_eval', hide: ["evalButton", "editorToggle"]});
+    // No evalautoButton. Use <div class="r_no_auto_eval">
+    sagecell.makeSagecell({inputLocation: '.r_no_auto_eval', linked:true, hide: ["editor", "editorToggle"], languages : ['r']});
+    // No output. Use <div class="no_out">
+    sagecell.makeSagecell({inputLocation: '.no_out', hide: ["evalButton", "editorToggle","output"]});
+    // Only the 'Go!' button; no input displayed. Use <div class="go">
+    sagecell.makeSagecell({inputLocation:  '.go', autoeval: 'True',
+                       template:       sagecell.templates.minimal,
+                       evalButtonText: 'Go!'});
+    // Linked Sage cell. Use <div class ="linked">
+    sagecell.makeSagecell({inputLocation: '.linked', linked: 'True'});
+    // Linked Sage cell with autoeval. Use <div class ="linked_auto">
+    sagecell.makeSagecell({inputLocation: '.linked_auto', linked: 'True', autoeval: 'True'});
+    // All languages. Use <div class = "all">
+        sagecell.makeSagecell({inputLocation: '.all', languages: sagecell.allLanguages});
+    });
+    </script>
+    <!-- Basic Sage -->
+    <script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
 
 
 

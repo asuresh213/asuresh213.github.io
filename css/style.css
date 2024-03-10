@@ -467,6 +467,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
+.row {
+  display: flex;
+}
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
 .content {
   position: relative;
   display: flex;
@@ -1115,6 +1122,20 @@ article .content .video-container embed {
   margin-top: 0;
   width: 100%;
   height: 100%;
+}
+article .content button {
+  margin: 0.5rem 0 1rem 0;
+  background: #333;
+  color: #2eba8a;
+  font-family: "Meslo LG";
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: 0.25s ease-in-out;
+  cursor: pointer;
+}
+article .content button:hover {
+  background: #2eba8a;
+  color: #333;
 }
 article .content blockquote {
   margin: 1rem 10px;

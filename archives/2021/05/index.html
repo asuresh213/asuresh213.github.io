@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Turning coffee into theorems...">
+    <meta name="description" content="Simplicity is the ultimate sophestication. - Leonardo da Vinci">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Arun Suresh">
 <meta property="og:url" content="http://asuresh213.github.io/archives/2021/05/index.html">
 <meta property="og:site_name" content="Arun Suresh">
-<meta property="og:description" content="Turning coffee into theorems...">
+<meta property="og:description" content="Simplicity is the ultimate sophestication. - Leonardo da Vinci">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Arun Suresh">
 <meta name="twitter:card" content="summary">
@@ -117,7 +117,7 @@
 
         <span>
     
-        <a class="" href="/2021/05/23/problem-3/">A fun problem! (Problem 3)</a>
+        <a class="" href="/2021/05/23/problem-2/">A fun problem! (Problem 2)</a>
     
 
 
@@ -165,7 +165,7 @@
 
         <span>
     
-        <a class="" href="/2021/05/11/problem-2/">A fun problem! (Problem 2)</a>
+        <a class="" href="/2021/05/11/PE484/">Arithmetic derivatives and outsmarting the heat death of the unvierse</a>
     
 
 
@@ -309,7 +309,7 @@
 
         <span>
     
-        <a class="" href="/2021/05/08/leet/1207/">Problem 1704</a>
+        <a class="" href="/2021/05/08/leet/1235/">Problem 1235</a>
     
 
 
@@ -333,7 +333,7 @@
 
         <span>
     
-        <a class="" href="/2021/05/08/leet/1235/">Problem 1235</a>
+        <a class="" href="/2021/05/08/leet/1207/">Problem 1704</a>
     
 
 
@@ -391,6 +391,51 @@
     <!-- jquery -->
  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+
+<!-- SAGE stuff. Shamelessly stolen from
+      https://github.com/sheaves/sheaves.github.io/blob/master/_layouts/default.html
+    -->
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <!-- Cell definitions -->
+    <script>$(function () {
+    // Basic Python cell. Use <div class = "python">
+    // sagecell.makeSagecell({inputLocation: '.python', languages : ['python']});
+    // Basic Sage cell. Use <div class = "sage">
+    sagecell.makeSagecell({inputLocation: '.sage'});
+    // Gap cell. Use <div class = "gap">
+    sagecell.makeSagecell({inputLocation: '.gap', languages : ['gap']});
+    // R cell. Use <div class = "r">
+    sagecell.makeSagecell({inputLocation: '.r_e', linked:true, languages : ['r']});
+    // Auto evaluate Sage. Use <div class="auto">
+    sagecell.makeSagecell({inputLocation: '.auto', autoeval: 'True'});
+    // No editor, auto evaluate Sage. Use <div class="auto_out">
+    sagecell.makeSagecell({inputLocation: '.auto_out', autoeval: 'True', hide: ["editor", "evalButton", "editorToggle"]});
+   // No evalButton. Use <div class="no_eval">
+    sagecell.makeSagecell({inputLocation: '.no_eval', hide: ["evalButton", "editorToggle"]});
+    // No evalautoButton. Use <div class="r_no_auto_eval">
+    sagecell.makeSagecell({inputLocation: '.r_no_auto_eval', linked:true, hide: ["editor", "editorToggle"], languages : ['r']});
+    // No output. Use <div class="no_out">
+    sagecell.makeSagecell({inputLocation: '.no_out', hide: ["evalButton", "editorToggle","output"]});
+    // Only the 'Go!' button; no input displayed. Use <div class="go">
+    sagecell.makeSagecell({inputLocation:  '.go', autoeval: 'True',
+                       template:       sagecell.templates.minimal,
+                       evalButtonText: 'Go!'});
+    // Linked Sage cell. Use <div class ="linked">
+    sagecell.makeSagecell({inputLocation: '.linked', linked: 'True'});
+    // Linked Sage cell with autoeval. Use <div class ="linked_auto">
+    sagecell.makeSagecell({inputLocation: '.linked_auto', linked: 'True', autoeval: 'True'});
+    // All languages. Use <div class = "all">
+        sagecell.makeSagecell({inputLocation: '.all', languages: sagecell.allLanguages});
+    });
+    </script>
+    <!-- Basic Sage -->
+    <script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
 
 
 

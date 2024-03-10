@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Here is my (printable) CV Education 2021 - Now:  PhD Mathematics (Advisor: Dr. D Edidin)   University of Missouri  2020 - 2021: M.S. Mathematics (Advisor: Dr. F Enescu)  Georgia State University  2016">
+    <meta name="description" content="Here is my (printable) CVHere is my one-page resume (industry facing) ResumeHere is my interactive resume (built with Tableau) Interactive resume (best viewed in a desktop&#x2F;laptop computer) Education 2">
 <meta property="og:type" content="website">
 <meta property="og:title" content="CV">
 <meta property="og:url" content="http://asuresh213.github.io/cv/index.html">
 <meta property="og:site_name" content="Arun Suresh">
-<meta property="og:description" content="Here is my (printable) CV Education 2021 - Now:  PhD Mathematics (Advisor: Dr. D Edidin)   University of Missouri  2020 - 2021: M.S. Mathematics (Advisor: Dr. F Enescu)  Georgia State University  2016">
+<meta property="og:description" content="Here is my (printable) CVHere is my one-page resume (industry facing) ResumeHere is my interactive resume (built with Tableau) Interactive resume (best viewed in a desktop&#x2F;laptop computer) Education 2">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-08T04:29:33.000Z">
-<meta property="article:modified_time" content="2023-11-18T18:54:27.239Z">
+<meta property="article:modified_time" content="2024-03-10T22:18:39.965Z">
 <meta property="article:author" content="Arun Suresh">
 <meta name="twitter:card" content="summary">
     
@@ -99,7 +99,7 @@
 
   <div class="content" itemprop="articleBody">
       
-          <p>Here is my (printable) <a href="./cv.pdf">CV</a></p>
+          <p>Here is my (printable) <a href="./cv.pdf">CV</a><br>Here is my one-page resume (industry facing) <a href="./resume.pdf">Resume</a><br>Here is my interactive resume (built with Tableau) <a href="/2024/03/05/interactive/">Interactive resume</a> (best viewed in a desktop/laptop computer)</p>
 <h1 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h1><p><strong><font style="color:#c1f0a6;"> 2021 - Now: </font></strong> PhD Mathematics (Advisor: Dr. D Edidin)  <cite><font style="color:#66645a; font-size:0.75vw;"> University of Missouri </font> </cite><br><strong>2020 - 2021:</strong> M.S. Mathematics (Advisor: Dr. F Enescu) <cite><font style="color:#66645a; font-size:0.75vw;"> Georgia State University </font> </cite><br><strong>2016 - 2019:</strong> B.S. Mathematics (Honors, Minor: Physics) <cite><font style="color:#66645a; font-size:0.75vw;"> Georgia State University </font> </cite></p>
 <h1 id="Publications"><a href="#Publications" class="headerlink" title="Publications"></a>Publications</h1><ul>
 <li>[In preparation] - Phase retrieval from second moments for general representations (joint w/ D. Edidin)</li>
@@ -196,6 +196,51 @@
     <!-- jquery -->
  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+
+<!-- SAGE stuff. Shamelessly stolen from
+      https://github.com/sheaves/sheaves.github.io/blob/master/_layouts/default.html
+    -->
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <!-- Cell definitions -->
+    <script>$(function () {
+    // Basic Python cell. Use <div class = "python">
+    // sagecell.makeSagecell({inputLocation: '.python', languages : ['python']});
+    // Basic Sage cell. Use <div class = "sage">
+    sagecell.makeSagecell({inputLocation: '.sage'});
+    // Gap cell. Use <div class = "gap">
+    sagecell.makeSagecell({inputLocation: '.gap', languages : ['gap']});
+    // R cell. Use <div class = "r">
+    sagecell.makeSagecell({inputLocation: '.r_e', linked:true, languages : ['r']});
+    // Auto evaluate Sage. Use <div class="auto">
+    sagecell.makeSagecell({inputLocation: '.auto', autoeval: 'True'});
+    // No editor, auto evaluate Sage. Use <div class="auto_out">
+    sagecell.makeSagecell({inputLocation: '.auto_out', autoeval: 'True', hide: ["editor", "evalButton", "editorToggle"]});
+   // No evalButton. Use <div class="no_eval">
+    sagecell.makeSagecell({inputLocation: '.no_eval', hide: ["evalButton", "editorToggle"]});
+    // No evalautoButton. Use <div class="r_no_auto_eval">
+    sagecell.makeSagecell({inputLocation: '.r_no_auto_eval', linked:true, hide: ["editor", "editorToggle"], languages : ['r']});
+    // No output. Use <div class="no_out">
+    sagecell.makeSagecell({inputLocation: '.no_out', hide: ["evalButton", "editorToggle","output"]});
+    // Only the 'Go!' button; no input displayed. Use <div class="go">
+    sagecell.makeSagecell({inputLocation:  '.go', autoeval: 'True',
+                       template:       sagecell.templates.minimal,
+                       evalButtonText: 'Go!'});
+    // Linked Sage cell. Use <div class ="linked">
+    sagecell.makeSagecell({inputLocation: '.linked', linked: 'True'});
+    // Linked Sage cell with autoeval. Use <div class ="linked_auto">
+    sagecell.makeSagecell({inputLocation: '.linked_auto', linked: 'True', autoeval: 'True'});
+    // All languages. Use <div class = "all">
+        sagecell.makeSagecell({inputLocation: '.all', languages: sagecell.allLanguages});
+    });
+    </script>
+    <!-- Basic Sage -->
+    <script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
 
 
 

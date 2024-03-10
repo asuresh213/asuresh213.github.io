@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Pre-ramble Warning:  This is a long-ish post where I walk through my thought process as I took this project from start to finish. For a quick summary of results, please read the section below and visi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)">
+<meta property="og:url" content="http://asuresh213.github.io/2024/02/29/solar/index.html">
+<meta property="og:site_name" content="Arun Suresh">
+<meta property="og:description" content="Pre-ramble Warning:  This is a long-ish post where I walk through my thought process as I took this project from start to finish. For a quick summary of results, please read the section below and visi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://asuresh213.github.io/2024/02/29/solar/23510.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/02/29/solar/62701.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/02/29/solar/92155.png">
+<meta property="og:image" content="https://&/#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;Capstone_Solar_Mainland_US&#47;FinalCapstone&#47;1_rss.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/02/29/solar/nnfunny.jpeg">
+<meta property="article:published_time" content="2024-02-29T06:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-10T22:18:39.866Z">
+<meta property="article:author" content="Arun Suresh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://asuresh213.github.io/2024/02/29/solar/23510.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2024/03/05/interactive/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2023/12/28/Leetcode/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2024/02/29/solar/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2024/02/29/solar/&text=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2024/02/29/solar/&title=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2024/02/29/solar/&is_video=false&description=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)&body=Check out this article: http://asuresh213.github.io/2024/02/29/solar/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2024/02/29/solar/&title=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2024/02/29/solar/&title=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2024/02/29/solar/&title=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2024/02/29/solar/&title=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2024/02/29/solar/&name=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2024/02/29/solar/&t=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pre-ramble"><span class="toc-number">1.</span> <span class="toc-text">Pre-ramble</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setup-amp-Background"><span class="toc-number">1.1.</span> <span class="toc-text">Setup &amp; Background</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Caveats"><span class="toc-number">1.2.</span> <span class="toc-text">Caveats</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-model"><span class="toc-number">2.</span> <span class="toc-text">The model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Looking-at-the-data"><span class="toc-number">2.1.</span> <span class="toc-text">Looking at the data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Selecting-relevant-data"><span class="toc-number">2.2.</span> <span class="toc-text">Selecting relevant data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Building-the-model"><span class="toc-number">2.3.</span> <span class="toc-text">Building the model</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cleaning-the-data"><span class="toc-number">3.</span> <span class="toc-text">Cleaning the data</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cleaning-solar-data"><span class="toc-number">3.1.</span> <span class="toc-text">Cleaning solar data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cleaning-the-other-data"><span class="toc-number">3.2.</span> <span class="toc-text">Cleaning the other data</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Analysis"><span class="toc-number">4.</span> <span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#State-aggregates"><span class="toc-number">4.1.</span> <span class="toc-text">State aggregates</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Building-the-state-model"><span class="toc-number">4.2.</span> <span class="toc-text">Building the state model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Building-the-zip-model"><span class="toc-number">4.3.</span> <span class="toc-text">Building the zip model</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Results"><span class="toc-number">5.</span> <span class="toc-text">Results</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Is-this-the-end"><span class="toc-number">6.</span> <span class="toc-text">Is this the end?</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Arun Suresh</span>
+      </span>
+      
+    <div class="postdate">
+      
+        (Last updated: <time datetime="2024-02-29T06:00:00.000Z" itemprop="datePublished">2024-03-10</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Pre-ramble"><a href="#Pre-ramble" class="headerlink" title="Pre-ramble"></a>Pre-ramble</h2><p><font style="color:#d68250;"> <strong>Warning:</strong> </font> This is a long-ish post where I walk through my thought process as I took this project from start to finish. For a quick summary of results, please read the section below and visit <a target="_blank" rel="noopener" href="https://public.tableau.com/app/profile/arun.suresh3275/viz/Capstone_Solar_Mainland_US/Dashboard2">this page</a>.</p>
+<p><font style="color:#d68250;"> <strong>Note:</strong> </font> This blog post reads like a Jupyter notebook, but it is powered by <a target="_blank" rel="noopener" href="https://sagecell.sagemath.org/">sagemath cells</a> (had a field day integrating that with this blog). In particular, for a cell to execute, all prior cells need to be executed. </p>
+<h3 id="Setup-amp-Background"><a href="#Setup-amp-Background" class="headerlink" title="Setup &amp; Background"></a>Setup &amp; Background</h3><p>So… I recently completed Google’s wonderful (online) <a target="_blank" rel="noopener" href="https://www.coursera.org/professional-certificates/google-data-analytics">data analytics professional certificate</a>. Towards the end of this eight part course, I was required to do a capstone project employing all the tools and knowledge I have acquired over the course of the program. After looking around for some datasets online, I settled on a data set that I found on Google’s BigQuery database called Sunroof_solar. The project utilized google maps to survey rooftops in zip-codes across the US, to aggregate the potential for solar panel installation in that region. This immediately drew me in because: </p>
+<ul>
+<li>As someone hailing from a very tropical land and a culture that is tied closely to the sun, </li>
+<li>As someone with a strong inclination to be self sufficient and offset my own carbon footprint, and </li>
+<li>As someone who is finishing up school and moving into industry (hopefully in mainland US),</li>
+</ul>
+<p>this dataset gave me a way to answer a very natural question – <font style="color:#bcea9e;"> <strong>How do states in mainland US compare in terms of the practicality of solar panel installation in a median household?</strong> </font> The hope being that I could potentially, one day in the far future, set my sails in that direction. </p>
+<h3 id="Caveats"><a href="#Caveats" class="headerlink" title="Caveats"></a>Caveats</h3><p><font style="color:#d68250;"> <strong>How do we define practicality?</strong> </font> Common sense says “go settle down in the areas with the most sun”, but there might very well be other factors at play. For instance, the proponsity to move to a state is dependent on the cost of living, and the propensity to install solar panels is dependent on the cost of installation, and the cost of electricity in those states. One could also track the total impact they might be having on the solar capacity of their state. For instance, in a state with fewer existing solar panels, a new installation would carry with it more bang than in a state where every other person invests in solar. </p>
+<p>So to quantify and qualify “practicality”, we really do have to look at the data. </p>
+<h2 id="The-model"><a href="#The-model" class="headerlink" title="The model"></a>The model</h2><h3 id="Looking-at-the-data"><a href="#Looking-at-the-data" class="headerlink" title="Looking at the data"></a>Looking at the data</h3><div class="r_e">
+<script type="text/x-sage">
+library("tidyverse")
+library("dplyr")
+library("magrittr")
+library("readr")
+solar<-read.csv("http://asuresh213.github.io/2024/02/29/solar/googlesolardata.csv")
+print(colnames(solar))
+dim(solar)
+</script>
+</div>
+
+<p>The columns contain a number of interesting quantities, which we utilize now to build a model (albeit, a bit naive).</p>
+<h3 id="Selecting-relevant-data"><a href="#Selecting-relevant-data" class="headerlink" title="Selecting relevant data"></a>Selecting relevant data</h3><p>We see some obvious interesting candidates. Here are their descriptions from BigQuery:</p>
+<ul>
+<li><font style="color:#cc99c2;"><strong>region_name:</strong></font> Zip code </li>
+<li><font style="color:#cc99c2;"><strong>state_name:</strong></font>  State </li>
+<li><font style="color:#cc99c2;"><strong>percent_covered:</strong></font>  % of buildings in Google Maps covered by Project Sunroof</li>
+<li><font style="color:#cc99c2;"><strong>percent_qualified:</strong></font>  % of buildings covered by Project Sunroof that are suitable for solar</li>
+<li><font style="color:#cc99c2;"><strong>kw_median:</strong></font> kW of solar potential for the median building in that region (assuming 250 watts per panel)</li>
+<li><font style="color:#cc99c2;"><strong>yearly_sunlight_kwh_median:</strong></font>  kWh/kw/yr produced by solar installed on the median roof, in DC (not AC) terms</li>
+<li><font style="color:#cc99c2;"><strong>carbon_offset_metric_tons:</strong></font> The potential carbon dioxide abatement of the solar capacity. </li>
+</ul>
+<p>There are other interesting metrics there, however, either these are incomplete<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> or these might get lost while we perform a statewide aggregates<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>. So we will simply work with these.</p>
+<h3 id="Building-the-model"><a href="#Building-the-model" class="headerlink" title="Building the model"></a>Building the model</h3><p>Given these choices and our motivation, a reasonable goal is to create three trackable indices:</p>
+<ul>
+<li><p><font style="color:#bcea9e;"><strong>Impact index:</strong></font> Measures the impact (CO2 offset) a new installation has on the statewide solar output.<br>More precisely, it is the carbon offset as a percentage of how many potential qualified solar installations there could be in a said region.</p>
+</li>
+<li><p><font style="color:#bcea9e;"><strong>Economical index:</strong></font> Measures how economical and effective a solar panel installation is<br>More precisely, it is the average installation cost as a fraction of the average house price, taken away from the yearly solar kwh produced as a fraction of the yearly kwh consumed.</p>
+</li>
+<li><p><font style="color:#bcea9e;"><strong>Savings index:</strong></font> Measures the amount (in dollars) saved yearly in electric bills<br>More precisely, it is the difference between (yearly) costs incurred from kwh consumed and (yearly) costs saved via solar kwh produced in that region.</p>
+</li>
+</ul>
+<p>In addition, we will also create associated parameters with values in range [0,1] to go with each index. A user can modify these parameters to weight each index according to their preference. </p>
+<p>To compute these quantities, we need to import some more relevant data, like state-wise solar panel costs, state-wide electricity consumption, state-wide average house prices etc. We will do that now. </p>
+<div class="r_e">
+<script type="text/x-sage">
+house_prices <- read.csv("http://asuresh213.github.io/2024/02/29/solar/house_prices.csv")
+monthly_power <- read.csv("http://asuresh213.github.io/2024/02/29/solar/avg_kwh_consumption.csv")
+panel_cost <- read.csv("http://asuresh213.github.io/2024/02/29/solar/panel_cost.csv")   
+print("----------panel_cost-----------")
+print(colnames(panel_cost))
+print("----------monthly_power--------")
+print(colnames(monthly_power))
+print("--------house_prices-----------")
+colnames(house_prices)
+</script>
+</div>
+
+
+<p><font style="color:#d68250;"> <strong>Note:</strong> </font> Here we are using pricing information that has been averaged across the state since this information was readily available for download. It was surprisingly hard to get pricing (or even demographic) information on a per zip-code basis. So, there is an inherent approximation that will permeate our final analysis coming from this state-wide average for any data point coming from the above data frames.</p>
+<h2 id="Cleaning-the-data"><a href="#Cleaning-the-data" class="headerlink" title="Cleaning the data"></a>Cleaning the data</h2><h3 id="Cleaning-solar-data"><a href="#Cleaning-solar-data" class="headerlink" title="Cleaning solar data"></a>Cleaning solar data</h3><p>After a cursory look through the data, we find some obvious issues that require cleaning.</p>
+<div class="r_e">
+<script type="text/x-sage">
+print("--- number of distinct states ---")
+print(solar %>% summarise(count = n_distinct(state_name)))
+print("--- no. of rows with % covered <= % qualified---")
+print(nrow(solar %>% filter(percent_covered <= percent_qualified)))
+print("--- no. of na---")
+print(sum(is.na(solar)))
+print("--- average percent_covered ---")
+solar %>% na.omit() %>% summarise(avg_percent_covered = mean(percent_covered))
+</script>
+</div>
+
+<p>The first obviuous bit of cleaning to do is to get rid of regions that are not a part of the mainland US. The additional 19 “states” reported by the data span only 32 data points, so removing them shouldn’t be an issue. The most concerning part of this exploration is that we have 4373 instances (~40% of our data) where the survey seemingly deemed a larger proportion of houses to be qualified for solar than the proportion it scanned. Since the link on BigQuery pointing to the data collection methodologies is unresponsive, we need to look into this further ourselves. But first, we will take care of the easier cleaning.</p>
+<p>We isolate the regions that are not mainland US states.</p>
+<div class="r_e">
+<script type="text/x-sage">
+# Remove all the other regions outside of mainland US.
+# Also Carolina is a separate entry from NC and SC. Not exactly sure what that place is. 
+# So we will remove it too.
+areas_to_del = c("Aguadilla","Arecibo", "Baja California", "Bayamón","Canóvanas","Cataño","Carolina", 
+                    "Cataño","Corozal","Dorado","Guaynabo", "Hawaii",
+                    "Hormigueros","Mayagüez","Moca","Ponce", "San Juan","Toa Alta","Toa Baja","Trujillo Alto")
+</script>
+</div>
+
+<p>Now we remove these, and also any occurrence of na’s. While we are at it, let us also create a new column that lists percent_covered to be a percentage of percent_qualified.</p>
+<div class="r_e">
+<script type="text/x-sage">
+solar_by_zip <- solar %>% 
+    select(region_name, state_name, percent_covered, percent_qualified, 
+            kw_median, yearly_sunlight_kwh_median, carbon_offset_metric_tons) %>% 
+    mutate(estimated_percent_qualified = (100.00/percent_covered)*percent_qualified) %>% 
+    na.omit %>% subset(!(state_name %in% areas_to_del))
+tibble(solar_by_zip)
+</script>
+</div>
+
+<p>Finally, we set new column names that are easier to work with/understand</p>
+<div class="r_e">
+<script type="text/x-sage">
+solar_by_zip <- solar_by_zip %>% 
+                set_colnames(c('zip_code', 'state', 'percent_covered', 'percent_qualified', 
+                                'kw_potential_for_median_house', 'yearly_solar_kwh_produced',
+                                'estimated_avg_carbon_offset','estimated_percent_of_houses_qualified'))
+colnames(solar_by_zip)
+</script>
+</div>
+
+<p>Now that we have taken care of the obvious cleaning, we will turn to our main concern to analyze the erroneous portion of data. To do this, we will first compute the number of data points we have for each state, and calculate the percentage of that data that is erroneous. </p>
+<div class="r_e">
+<script type="text/x-sage">
+solar_by_zip %>% 
+    group_by(state) %>% 
+    reframe(bad = sum(percent_covered <= percent_qualified)) %>% 
+    mutate(good = count(solar_by_zip, state)['n']) %>% 
+    mutate(percent_bad = (bad/good)*100) %>% arrange(-percent_bad)
+</script>
+</div>
+
+<p>Now this is shaping to be a real issue. If the percentage of erroneous data was small, we could have considered statistical measures with a central tendency (eg. median) to avoid the extreme behavior. However, the percent of unclean data in a good selection of states is significantly high, and therefore keeping them around for analysis will skew our results for these states. So we are left to make the unfortunate decision of filtering these rows out of our dataset, and work with the remaning data. </p>
+<div class="r_e">
+<script type="text/x-sage">
+solar_by_zip <- solar_by_zip %>%
+                filter(percent_covered >= percent_qualified) %>%
+                select(-percent_covered, -percent_qualified)
+nrow(solar_by_zip)
+</script>
+</div>
+
+<p>Finally, after all this cleaning, we look at the states with the least amount of data available, if only, to remind ourselves to not take results for these regions very seriously until more reliable data is obtained.</p>
+<div class="r_e">
+<script type="text/x-sage">
+# These states need more data before they can produce reliable results. 
+# We will still include them for now, for completion.
+count(solar_by_zip, state) %>% 
+    filter(n<30)
+</script>
+</div>
+
+
+
+<h3 id="Cleaning-the-other-data"><a href="#Cleaning-the-other-data" class="headerlink" title="Cleaning the other data"></a>Cleaning the other data</h3><p>So I am not going to bore you with the details of similar (but comparitively) cleaning done to the other datasets. Instead I will leave annotated code below. </p>
+<div class="r_e">
+<script type="text/x-sage">
+# Pre-processing panel_cost data frame and extracting the cost of panel installation by state
+panel_cost <- panel_cost %>%
+                select(STATE, AVERAGE.COST.FOR.6.KW.SYSTEM.WITH.26..FEDERAL.TAX.CREDIT.APPLIED) %>% 
+                set_colnames(c('state', 'average_installation_cost')) %>%
+                subset(state != "Hawaii")
+# Pre-processing monthly_power data and extracting the average monthly power consumption and costs by state
+state_demographics <- monthly_power %>%
+                        select(State, Number.of.Customers, Average.Monthly.Consumption..kWh., Average.Price..cents.kWh.)%>%
+                        set_colnames(c('state', 'number_of_customers', 'average_monthly_consumption', 'price_per_kwh'))
+# Merging all relevant data into one data frame.
+moneys <- merge(panel_cost, house_prices, by="state")
+moneys <- merge(moneys, state_demographics, by="state")
+# Turning all non-numeric entries to numbers
+moneys <- moneys %>%
+            mutate(number_of_customers = parse_number(as.character(number_of_customers)))%>%
+            mutate(average_installation_cost = parse_number(as.character(average_installation_cost))) %>%
+            mutate(avg_house_price = parse_number(as.character(avg_house_price))) %>%
+            mutate(average_monthly_consumption = parse_number(as.character(average_monthly_consumption))) %>%
+            mutate(price_per_kwh = price_per_kwh/100)
+colnames(moneys)
+</script>
+</div>
+
+
+
+<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><h3 id="State-aggregates"><a href="#State-aggregates" class="headerlink" title="State aggregates"></a>State aggregates</h3><p>I want to average values across an entire state (as opposed to treating this problem zipcode by zipcode). The first main reason is because that is inherently the question I want to answer. The second reason is because my moneys dataframe contains quantities that have been averaged across the entire state. </p>
+<p>So, let us check to see the standard deviation of the kw data to see if it is reasonable to average across the entire state. Let’s see what the standard deviation of the kw_per_house value is across the entire state, and report the worst ones higher up. A higher standard deviation would tell us that there is considerable variability in the solar panel output between various zipcodes.</p>
+<div class="r_e">
+<script type="text/x-sage">
+sd_data <- solar_by_zip %>%
+            group_by(state) %>%
+            summarise(sd_kw = sd(kw_potential_for_median_house), sd_yearly = sd(yearly_solar_kwh_produced)) %>%
+            arrange(-sd_kw)
+</script>
+</div>
+
+
+<p>That is some pretty high standard deviation for kw per house. A quick search says a single panel produces ~1.5-2.5 kWh/day. Let’s say, that times max 20 panels per house, that’s max production cap of 50kWh. Scaling to a year, we can produce a theoretical maximum of ~18000kWh/year. So we estimate some more realistic numbers for kw potential. Let’s look at some outliers.</p>
+<div class="r_e">
+<script type="text/x-sage">
+tibble(solar_by_zip %>%
+        filter(kw_potential_for_median_house >= 20) %>%
+        filter(yearly_solar_kwh_produced >=18000))
+</script>
+</div>
+
+<p>Aha! looking up a few of these zip codes informs us that all these instances belong to either dedicated solar farms or some big establishment like big malls/shopping complexes that have solar panels installed onto their roofs. Below are some examples. This could be an artifact of the data collection process where they looked at existing solar installation in a zipcode and extrapolated it to the entire region. In particular, we can conveniently ignore these data points, which there is another 500 of.</p>
+<div class="row">
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/02/29/solar/23510.png" alt="23510" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/02/29/solar/62701.png" alt="62701" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/02/29/solar/92155.png" alt="92155" style="width:100%">
+  </div>
+</div>
+
+
+
+<p>Once again, before choosing to filter them away we do a similar analysis to before. First we will focus on the total kw_potential for a median household.</p>
+<div class="r_e">
+<script type="text/x-sage">
+temp <- solar_by_zip %>% 
+  group_by(state) %>%
+  reframe(abnormal_kw_pot = sum(kw_potential_for_median_house >= 20), abnormal_yearly_kwh = sum(yearly_solar_kwh_produced >=18000)) %>%  
+  mutate(num_data_pts = count(solar_by_zip, state)['n']) %>%
+  mutate(percent_abnormal_kw_pot = (abnormal_kw_pot/num_data_pts)*100) %>% 
+  mutate(percent_abnormal_yearly_kwh = (abnormal_yearly_kwh/num_data_pts)*100) %>%
+  arrange(-percent_abnormal_kw_pot)
+tibble(temp)
+sum(temp['abnormal_kw_pot'])
+</script>
+</div>
+
+<p>Just focusing on the percent_abnormal_kw_pot, we see that for some states, these abnormal data points make up about 20-25% of data (per state) that we have, so even using measures that have some central tendency, we might still be unable to produce a faithful representation of the true underlying data. On the other hand, the number of abnormal cases is not that terrible compared to the losses we have already incurred in the previous cleaning step. So we might as well get rid of these points as well. </p>
+<div class="r_e">
+<script type="text/x-sage">
+solar_by_zip <- solar_by_zip %>%
+                filter(kw_potential_for_median_house <= 20)
+nrow(solar_by_zip)
+</script>
+</div>
+
+<p>Now, we focus on the yearly kWH produced by the median household.</p>
+<div class="r_e">
+<script type="text/x-sage">
+temp <- solar_by_zip %>% 
+  group_by(state) %>%
+  reframe(abnormal_kw_pot = sum(kw_potential_for_median_house >= 20), abnormal_yearly_kwh = sum(yearly_solar_kwh_produced >=18000)) %>%  
+  mutate(num_data_pts = count(solar_by_zip, state)['n']) %>%
+  mutate(percent_abnormal_kw_pot = (abnormal_kw_pot/num_data_pts)*100) %>% 
+  mutate(percent_abnormal_yearly_kwh = (abnormal_yearly_kwh/num_data_pts)*100) %>%
+  arrange(-percent_abnormal_yearly_kwh) %>%
+  select(state, percent_abnormal_kw_pot,percent_abnormal_yearly_kwh)
+</script>
+</div>
+
+<p>Now, we can see some patterns and stories emerging from the data. We are able to see the first glimpse of our answer in the above table! Consider the top candidate Arizona. About 85% of its yearly kwh production is flagged abnormal by our average standards, even though the solar kwh potential per median house is flagged as being perfectly normal. So, this is saying that, a typical house in Arizona has exactly the number of solar panels and the kind of solar installation we are looking for, but is generating what is considered an abnormal amount of solar energy, compared to the national average. So, Arizona should be one of the top contenders for our final answer! </p>
+<p>Now as a secondary check to see if we can average across the state, let’s compute the standard deviation of both quantities to see how much variability we observe across the state.</p>
+<div class="r_e">
+<script type="text/x-sage">
+sd_data <- solar_by_zip %>%
+        group_by(state) %>%
+        summarise(sd_kw = sd(kw_potential_for_median_house), sd_yearly = sd(yearly_solar_kwh_produced)) %>%
+        arrange(-sd_kw)
+worst_sd_kw <- slice(sd_data, 1:5)
+ggplot(data = worst_sd_kw) + geom_bar(mapping = aes(x=state, y=sd_kw, fill = sd_yearly), stat="identity")
+</script>
+</div>
+
+
+<p>So in terms of kw_potential for a median house, we arre doing really well. We have successfully eliminated all bigger entities like solar farms and big malls that were skewing our data. However, the yearly_kwh_produced still has big variability within a state. Let us see some examples to observe if there are major outliers causing this.</p>
+<div class="r_e">
+<script type="text/x-sage">
+worst_sd_yearly <- sd_data %>% 
+                    arrange(-sd_yearly) %>% 
+                    slice(1:5) %>% 
+                    select(state)
+worst_yearly_states = c("New Mexico", "District of Columbia", "North Dakota", "Michigan", "Montana")
+plot_data <- solar_by_zip %>%
+                subset(state %in% worst_yearly_states) 
+ggplot(data = plot_data) + 
+    geom_point(mapping = aes(x=zip_code, y=estimated_percent_of_houses_qualified, color=state)) + 
+    facet_wrap(~state, scales = "free") + 
+    theme(legend.position = "none")
+</script>
+</div>
+
+<p>So from the plots we observe that the all states except Michigan have bad standard deviations from a lack of data points or a few outliers in the case of Washington DC. Michigan, is well, Michigan. In any case, since the most of the worst preformers arise from a lack of data, we don’t need to filter them out any further. At the same time, since we do not want the outliers to skew our analysis, for our global state by state analysis, we will only consider the median kwh output for all data points in that state. </p>
+<p>Finally we perform a similar analysis on carbon offset, which yields similar results. For the sake of getting to the end of the post already, I skip code from this part of the analysis. This portion of the analysis can be found in my Github code. With this, we finally, compile all the relevant medians (aggregated by state) into a new data frame.</p>
+<div class="r_e">
+<script type="text/x-sage">
+median_solar_by_state <- solar_by_zip %>%
+                            group_by(state) %>%
+                            summarise(median_kw_potential = median(kw_potential_for_median_house), 
+                                        median_yearly_kwh_produced = median(yearly_solar_kwh_produced),
+                                        median_percent_houses_qualified = median(estimated_percent_of_houses_qualified),
+                                        median_carbon_offset = median(estimated_avg_carbon_offset))
+tibble(median_solar_by_state)
+</script>
+</div>
+
+<h3 id="Building-the-state-model"><a href="#Building-the-state-model" class="headerlink" title="Building the state model"></a>Building the state model</h3><p>With the data validated and cleaned, we are now ready to throw this into our model and see what it spits out. First we merge all the relevant datasets.</p>
+<div class="r_e">
+<script type="text/x-sage">
+main_df <- merge(median_solar_by_state, moneys, by="state")
+tibble(main_df)
+</script>
+</div>
+
+<p>And we also create scalable weights for our indices. </p>
+<div class="r_e">
+<script type="text/x-sage">
+impact_factor = 0.3333
+economical_factor = 0.3333
+savings_factor = 0.3333
+</script>
+</div>
+
+<p>Finally, modify our main dataframe with the indices, create a ranking system and output it all to a .csv file.</p>
+<div class="r_e">
+<script type="text/x-sage">
+main_df <- main_df %>%
+  mutate(impact = (100*median_carbon_offset)/(median_percent_houses_qualified*number_of_customers)) %>% 
+  mutate(impact = (impact/max(impact))) %>%
+  mutate(economical = -(average_installation_cost/avg_house_price) + (median_yearly_kwh_produced)/(average_monthly_consumption*12))%>%
+  mutate(economical = (economical/max(economical))) %>%
+  mutate(savings = (-average_monthly_consumption*12 + median_yearly_kwh_produced)*price_per_kwh) %>%
+  mutate(savings = (savings/max(savings))) %>%
+  mutate(naive_model = impact_factor*impact + economical_factor*economical + savings_factor*savings) %>%
+  mutate(naive_model = naive_model/max(naive_model))%>%
+  arrange(-naive_model)%>%
+  mutate(aggregate_rank = c(1:50)) 
+tibble(main_df)
+#write.csv(main_df, file="naive_model.csv")
+</script>
+</div>
+
+<h3 id="Building-the-zip-model"><a href="#Building-the-zip-model" class="headerlink" title="Building the zip model"></a>Building the zip model</h3><p>Now that the zip-code based data is clean, we can also get a more coarse representation of model by just directly looking at our indices at each zip-code for which we have data available. Doing this is a relatively straight forward process. The only thing we need to change is that in the previous case  our “number_of_customers” came from a state-wide average. But now, we replace that with the count_qualified data field included in the original solar data from google. The rest of the variables can stay as they are. </p>
+<div class="r_e">
+<script type="text/x-sage">
+zip_wise_customers <- solar %>%
+  select(region_name, count_qualified) %>%
+  set_colnames(c('zip_code', 'num_customers'))
+model_2_solar <- merge(solar_by_zip, zip_wise_customers, by='zip_code')
+model_2_moneys <- moneys %>%
+  select(-number_of_customers)
+model_2_main_df <- merge(model_2_solar, model_2_moneys, by='state')
+tibble(model_2_main_df)
+</script>
+</div>
+
+
+<p>Now, we finally build our model on a per-zip-code basis</p>
+<div class="r_e">
+<script type="text/x-sage">
+model_2_main_df <- model_2_main_df %>%
+  mutate(impact = (100*estimated_avg_carbon_offset)/(estimated_percent_of_houses_qualified*num_customers)) %>% 
+  mutate(impact = (impact/max(impact))) %>%
+  mutate(economical = -(average_installation_cost/avg_house_price) + (yearly_solar_kwh_produced)/(average_monthly_consumption*12))%>%
+  mutate(economical = (economical/max(economical))) %>%
+  mutate(savings = (-average_monthly_consumption*12 + yearly_solar_kwh_produced)*price_per_kwh) %>%
+  mutate(savings = (savings/max(savings))) %>%
+  mutate(naive_model = impact_factor*impact + economical_factor*economical + savings_factor*savings) %>%
+  mutate(naive_model = naive_model/max(naive_model))%>%
+  arrange(-naive_model)
+tibble(model_2_main_df)
+#write.csv(model_2_main_df, file="naive_model_more_deets.csv")
+</script>
+</div>
+
+
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p>To visualize the results of this undertaking, I used tableau to quantify my findings. Below is the Tableau dashboard.</p>
+<div class="tableauPlaceholder" id="viz1709231921536" style="position: relative"><noscript><a href="#"><img alt="Final Capstone " src="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;Capstone_Solar_Mainland_US&#47;FinalCapstone&#47;1_rss.png" style="border: none"></a></noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"> <param name="embed_code_version" value="3"> <param name="site_root" value><param name="name" value="Capstone_Solar_Mainland_US&#47;FinalCapstone"><param name="tabs" value="no"><param name="toolbar" value="yes"><param name="static_image" value="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;Capstone_Solar_Mainland_US&#47;FinalCapstone&#47;1.png"> <param name="animate_transition" value="yes"><param name="display_static_image" value="yes"><param name="display_spinner" value="yes"><param name="display_overlay" value="yes"><param name="display_count" value="yes"><param name="language" value="en-US"><param name="filter" value="publish=yes"></object></div>                <script type="text/javascript">                    var divElement = document.getElementById('viz1709231921536');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='1227px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+<p>In the state aggregates tab, we obtain the answer to our initial question. The top five states with optimized solar practicality (with each index weighted equally), are <em>drum roll</em></p>
+<ol>
+<li>California</li>
+<li>New Mexico</li>
+<li>Nevada</li>
+<li>North Dakota (Was in our blacklist for a lack of data. Take this with a grain of salt)</li>
+<li>Vermont (Was in our blacklist for a lack of data. Take this with a grain of salt).</li>
+</ol>
+<p>Next contenders to replace 4 and 5 are </p>
+<ol start="6">
+<li>Utah.</li>
+<li>Rhode Island. (HUH? Probably because it is a small state, but HUH!)</li>
+</ol>
+<h2 id="Is-this-the-end"><a href="#Is-this-the-end" class="headerlink" title="Is this the end?"></a>Is this the end?</h2><p>Probably not. I am currently mentoring my <a target="_blank" rel="noopener" href="https://sites.google.com/umsystem.edu/mathdrp/">DRP</a> student on the universal approximation theorem, which is the backbone that allows deep neural networks to be as powerful as they have turned out to be in this day and age. One potential project for this student is to train a deep neural network on the current dataset used in this project, and use it to predict the relevant indices at zipcodes that we currently do not posses the data for. I will update the blog with a part 2, once we end up building such a model.</p>
+<p>Exciting times. </p>
+<p>Thank you for taking the time to read this. Here is a complementary meme.</p>
+<img style="padding: 10px;" width="375" height="375" src="http://asuresh213.github.io/2024/02/29/solar/nnfunny.jpeg">
+
+
+
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">For instance num_qualified is meaningless unless we know the total number of people in each region.</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">For instance, the latitude information</span><a href="#fnref:2" rev="footnote"> ↩</a></li></ol></div></div>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pre-ramble"><span class="toc-number">1.</span> <span class="toc-text">Pre-ramble</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setup-amp-Background"><span class="toc-number">1.1.</span> <span class="toc-text">Setup &amp; Background</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Caveats"><span class="toc-number">1.2.</span> <span class="toc-text">Caveats</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-model"><span class="toc-number">2.</span> <span class="toc-text">The model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Looking-at-the-data"><span class="toc-number">2.1.</span> <span class="toc-text">Looking at the data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Selecting-relevant-data"><span class="toc-number">2.2.</span> <span class="toc-text">Selecting relevant data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Building-the-model"><span class="toc-number">2.3.</span> <span class="toc-text">Building the model</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cleaning-the-data"><span class="toc-number">3.</span> <span class="toc-text">Cleaning the data</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cleaning-solar-data"><span class="toc-number">3.1.</span> <span class="toc-text">Cleaning solar data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cleaning-the-other-data"><span class="toc-number">3.2.</span> <span class="toc-text">Cleaning the other data</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Analysis"><span class="toc-number">4.</span> <span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#State-aggregates"><span class="toc-number">4.1.</span> <span class="toc-text">State aggregates</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Building-the-state-model"><span class="toc-number">4.2.</span> <span class="toc-text">Building the state model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Building-the-zip-model"><span class="toc-number">4.3.</span> <span class="toc-text">Building the zip model</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Results"><span class="toc-number">5.</span> <span class="toc-text">Results</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Is-this-the-end"><span class="toc-number">6.</span> <span class="toc-text">Is this the end?</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2024/02/29/solar/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2024/02/29/solar/&text=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2024/02/29/solar/&title=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2024/02/29/solar/&is_video=false&description=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)&body=Check out this article: http://asuresh213.github.io/2024/02/29/solar/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2024/02/29/solar/&title=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2024/02/29/solar/&title=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2024/02/29/solar/&title=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2024/02/29/solar/&title=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2024/02/29/solar/&name=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2024/02/29/solar/&t=Harvest the sun! - Optimizing solar practicality across mainland US (Part 1)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2024
+    Arun Suresh
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+
+<!-- SAGE stuff. Shamelessly stolen from
+      https://github.com/sheaves/sheaves.github.io/blob/master/_layouts/default.html
+    -->
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <!-- Cell definitions -->
+    <script>$(function () {
+    // Basic Python cell. Use <div class = "python">
+    // sagecell.makeSagecell({inputLocation: '.python', languages : ['python']});
+    // Basic Sage cell. Use <div class = "sage">
+    sagecell.makeSagecell({inputLocation: '.sage'});
+    // Gap cell. Use <div class = "gap">
+    sagecell.makeSagecell({inputLocation: '.gap', languages : ['gap']});
+    // R cell. Use <div class = "r">
+    sagecell.makeSagecell({inputLocation: '.r_e', linked:true, languages : ['r']});
+    // Auto evaluate Sage. Use <div class="auto">
+    sagecell.makeSagecell({inputLocation: '.auto', autoeval: 'True'});
+    // No editor, auto evaluate Sage. Use <div class="auto_out">
+    sagecell.makeSagecell({inputLocation: '.auto_out', autoeval: 'True', hide: ["editor", "evalButton", "editorToggle"]});
+   // No evalButton. Use <div class="no_eval">
+    sagecell.makeSagecell({inputLocation: '.no_eval', hide: ["evalButton", "editorToggle"]});
+    // No evalautoButton. Use <div class="r_no_auto_eval">
+    sagecell.makeSagecell({inputLocation: '.r_no_auto_eval', linked:true, hide: ["editor", "editorToggle"], languages : ['r']});
+    // No output. Use <div class="no_out">
+    sagecell.makeSagecell({inputLocation: '.no_out', hide: ["evalButton", "editorToggle","output"]});
+    // Only the 'Go!' button; no input displayed. Use <div class="go">
+    sagecell.makeSagecell({inputLocation:  '.go', autoeval: 'True',
+                       template:       sagecell.templates.minimal,
+                       evalButtonText: 'Go!'});
+    // Linked Sage cell. Use <div class ="linked">
+    sagecell.makeSagecell({inputLocation: '.linked', linked: 'True'});
+    // Linked Sage cell with autoeval. Use <div class ="linked_auto">
+    sagecell.makeSagecell({inputLocation: '.linked_auto', linked: 'True', autoeval: 'True'});
+    // All languages. Use <div class = "all">
+        sagecell.makeSagecell({inputLocation: '.all', languages: sagecell.allLanguages});
+    });
+    </script>
+    <!-- Basic Sage -->
+    <script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Question statement(…and conventional introductory ramble) So a couple days about a week ago, just as I was putting in some finishing touches to my previous blog post (and the blog itself), my roommate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arithmetic derivatives and outsmarting the heat death of the unvierse">
+<meta property="og:url" content="http://asuresh213.github.io/2021/05/11/PE484/index.html">
+<meta property="og:site_name" content="Arun Suresh">
+<meta property="og:description" content="Question statement(…and conventional introductory ramble) So a couple days about a week ago, just as I was putting in some finishing touches to my previous blog post (and the blog itself), my roommate">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://asuresh213.github.io/2021/05/11/PE484/alg1.png">
+<meta property="og:image" content="http://asuresh213.github.io/2021/05/11/PE484/joke1.png">
+<meta property="og:image" content="http://asuresh213.github.io/2021/05/11/PE484/joke2.png">
+<meta property="article:published_time" content="2021-05-12T04:29:35.000Z">
+<meta property="article:modified_time" content="2024-02-23T20:38:52.935Z">
+<meta property="article:author" content="Arun Suresh">
+<meta property="article:tag" content="Problem series">
+<meta property="article:tag" content="Number theory">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://asuresh213.github.io/2021/05/11/PE484/alg1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Arithmetic derivatives and outsmarting the heat death of the unvierse</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2021/05/14/dynamic/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/05/08/1143/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2021/05/11/PE484/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2021/05/11/PE484/&text=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2021/05/11/PE484/&title=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2021/05/11/PE484/&is_video=false&description=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Arithmetic derivatives and outsmarting the heat death of the unvierse&body=Check out this article: http://asuresh213.github.io/2021/05/11/PE484/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2021/05/11/PE484/&title=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2021/05/11/PE484/&title=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2021/05/11/PE484/&title=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2021/05/11/PE484/&title=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2021/05/11/PE484/&name=Arithmetic derivatives and outsmarting the heat death of the unvierse&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2021/05/11/PE484/&t=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Question-statement"><span class="toc-number">1.</span> <span class="toc-text">Question statement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Et-tu-Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Et-tu Brute Force</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Can-you-crunch-those-numbers-again"><span class="toc-number">3.</span> <span class="toc-text">Can you crunch those numbers again?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#In-order-to-understand-recursion%E2%80%A6"><span class="toc-number">4.</span> <span class="toc-text">In order to understand recursion…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alternate-approach"><span class="toc-number">5.</span> <span class="toc-text">Alternate approach</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Arithmetic derivatives and outsmarting the heat death of the unvierse
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Arun Suresh</span>
+      </span>
+      
+    <div class="postdate">
+      
+        (Last updated: <time datetime="2021-05-12T04:29:35.000Z" itemprop="datePublished">2024-02-23</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Number-theory/" rel="tag">Number theory</a>, <a class="tag-link-link" href="/tags/Problem-series/" rel="tag">Problem series</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Question-statement"><a href="#Question-statement" class="headerlink" title="Question statement"></a>Question statement</h2><p>(…and conventional introductory ramble)</p>
+<p>So <del>a couple days</del> about a week ago, just as I was putting in some finishing touches to my previous blog post (and the blog itself), my roommate asked me for some programming help. He told me he wanted to filter out unique elements of an array along with their count as a single object. Being the kind and benevolent soul that I am, I helped him with it. But at the same time being a nosy little thing, I wondered why this man needed to filter arrays in the middle of the day – and so I asked him, and thus began a three day journey filled with numerous dead-ends, random insights, unexpected discoveries (and hours upon hours of wasted runtime) all in the hopes of trying to solve this very cool problem. Here is the set up.</p>
+<blockquote>
+<p>The arithmetic derivative is defined by</p>
+<ul>
+<li>$p’ = 1$ when p is a prime number</li>
+<li>Given positive integers $a$ and $b$ we define $(ab)’ = a’b + ab’$</li>
+</ul>
+</blockquote>
+<p>For example, $20’ = (2^2 \cdot 5)’ = (2^2)’\cdot 5 + 2^2 = (2 + 2)\cdot 5 + 4 = 24$.</p>
+<p>The question now seeks to find the following sum<br>$$\sum_{k=2}^{5\times 10^{15}} \mathrm{gcd}(k,k’)$$</p>
+<p><em>Source: <a target="_blank" rel="noopener" href="https://projecteuler.net/about">Project Euler</a>, problem 484</em></p>
+<p>I would be lying if I said the first thought that crossed my mind after reading this problem was not “Oh, this seems like a cool problem to put in the blog!”. To be honest these are the kind of problems that motivated me to have this series going in the first place.</p>
+<p>Before I get into the nitty-gritty details of this problem, here is a disclaimer:</p>
+<p>$$\underline{\textbf{ I am not going to be posting the full solution to this problem below. }}$$</p>
+<p>The reason for this is best explained in the about page of Project Euler.</p>
+<blockquote>
+<p><font size="1.5"> Q: I learned so much solving problem XXX, so is it okay to publish my solution elsewhere? </font></p>
+<blockquote>
+<p><font size="1"> A: It appears that you have answered your own question. There is nothing quite like that “Aha!” moment when you finally beat a problem which you have been working on for some time. It is often through the best of intentions in wishing to share our insights so that others can enjoy that moment too. Sadly, that will rarely be the case for your readers. Real learning is an active process and seeing how it is done is a long way from experiencing that epiphany of discovery. Please do not deny others what you have so richly valued yourself.</font></p>
+</blockquote>
+</blockquote>
+<p>With that out of the way, what I will do in this post though is go over some of the hints discussed in this <a target="_blank" rel="noopener" href="https://www.tapatalk.com/groups/eulersolutionsfr/problem-484-t318.html">discussion forum</a> and give more of a background and context to them. If you would like to challenge yourself without my help, I welcome you to close the blog post right now, and go on your own three-day (or shorter/longer) journey.</p>
+<p>For those who chose to continue with the post, here’s a run down of what we will discuss. We start by reviewing some of my naive initial attempts and discuss why they are utter trash. Then we look for some mathematical short-cuts that will help the code terminate before the end of human civilization two hundred million years from now (if we don’t already kill ourselves by then). In the section following that, we will discuss good coding strategies that might come very much in handy in bringing down the time complexity of the problem. Towards the end of the post, I will also summarize all the theory was discussed in the post from perspective of this problem, and in doing so, provide a (hopefully identifiable) skeleton of a solution.</p>
+<p>So buckle up, here we go!</p>
+<h2 id="Et-tu-Brute-Force"><a href="#Et-tu-Brute-Force" class="headerlink" title="Et-tu Brute Force"></a>Et-tu Brute Force</h2><p>Now if you are anything like me (aka. commutative algebraist), you see a problem like this and you start considering the most general possible case and outlining an algorithm based on that. So let us do just that. Start with a random natural number $n$ and since it is possible to uniquely factor any natural number as a product of primes, let us say $n = p_1^{\alpha_1}p_2^{\alpha_2}\dots p_n^{\alpha_n}$. Then we compute $n’$ using the product rule given in the problem<br>$$n’ = (\alpha_1 p_1^{\alpha_1 - 1}p_2^{\alpha_2}\dots p_n^{\alpha_n}) + \dots + (\alpha_n p_1^{\alpha_1}p_2^{\alpha_2}\dots p_n^{\alpha_n - 1})$$<br>looking at it closely, it is easy to simplify that as<br>$$n’ = \sum_{i=1}^n \alpha_i \frac{n}{p_i}$$<br>Now, all that is left to do is calculate is $\mathrm{gcd}(n,n’)$. So we have<br>$$\mathrm{gcd}(n,n’) = \mathrm{gcd}\left(\prod_{i=1}^n p_i^{\alpha_i}, \sum_{i=1}^n \frac{\alpha_i}{p_i}n \right) = \left[\prod_{i=1}^n p_i^{\alpha_i-1}\right]\mathrm{gcd}\left(\prod_{i=1}^n p_i, \sum_{i=1}^n \frac{\alpha_i}{p_i} n\right)$$<br>Notice that we can’t factor the $n$ out of the $\mathrm{gcd}$ term because we don’t know if the sum $\sum_{i=1}^n \frac{\alpha_i}{p_i} \in \mathbb{Z}$.</p>
+<p>So the approach is clear. Given an upper bound $L$, we simply have to consider every natural number between $2$ and $L$, factorize it along with its corresponding the exponents, use that to compute the $\mathrm{gcd}(n,n’)$ as shown above and add it all up!</p>
+<p>Easy, right? …right?</p>
+<p>Uh, well – not really (but we’ll get there). Let’s try and understand why.<br>First of all, we need a way to factorize any given number into its constituent primes and identify their corresponding exponents. But this is not terribly hard once you sit down and really think about it for maybe fifteen to twenty minutes.</p>
+<p>Here’s a nice little function that would do it for you.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">primeFactors</span>(<span class="params">n</span>):</span></span><br><span class="line">    a=[] <span class="comment"># array to store prime factors in</span></span><br><span class="line">    e = <span class="number">0</span> <span class="comment"># dummy variable to count exponent</span></span><br><span class="line">    <span class="comment"># extracting all 2&#x27;s</span></span><br><span class="line">    <span class="keyword">while</span>(n % <span class="number">2</span> == <span class="number">0</span>):</span><br><span class="line">        e += <span class="number">1</span></span><br><span class="line">        n = n / <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span>(e!=<span class="number">0</span>):</span><br><span class="line">        a.append([<span class="number">2</span>, e])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># extracting all odd prime factors</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>,<span class="built_in">int</span>(math.sqrt(n))+<span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">        e = <span class="number">0</span> <span class="comment"># exponent starting at 0 for each number</span></span><br><span class="line">        <span class="keyword">while</span> n % i== <span class="number">0</span>:</span><br><span class="line">            e +=<span class="number">1</span></span><br><span class="line">            n = n / i</span><br><span class="line">        <span class="keyword">if</span>(e!=<span class="number">0</span>):</span><br><span class="line">            a.append([i, e])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">2</span>): <span class="comment"># if something remains in the end undivided - it has to be prime.</span></span><br><span class="line">        a.append([n, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
+<p>The code isn’t optimized, but it runs quite fast. It can comfortably factorize $12312234873493412134$ in about 3 seconds (in interpreted python). Once this is done, the rest of the code falls into place quite nicely. I’m not going to bore you with the details of implementation of the algorithm <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. Here is why it is bad:</p>
+<p>I ran the algorithm for smaller values of $L$ fairly successfully, and then I started to progressively increase the value of $L$ to see how well it performed as $L$ went up. I also made the effort to tabulate the run-time for each $L$ value. Below I’ve reproduced a plot I made comparing the run-time of this algorithm against $\log_{10}(L)$ (this was done mainly to squish down the $x-$axis to a realistic scale).</p>
+<img style="padding: 10px;" width="450" height="450" src="http://asuresh213.github.io/2021/05/11/PE484/alg1.png">
+
+
+<p>Looking at the graph, it is pretty apparent that the runtime grows exponentially against $\log(L)$!. As a matter of fact, the equation of the orange curve is<br>$$y = 0.0085e^{2.6123\log_{10}(x)-2.5020}-5.1564$$<br>Therefore, setting $x = 5 \times 10^{15}$ we get $y = 4.50125 \times 10^{14}$ seconds.</p>
+<p>Just to sort of picture that, running on a single computer, it would take about $14274.17$ millenniums for the code to finish running. We could also parallelize it over a million computers (good luck getting your hands on them), and you can bring the run time down to about $14.27$ years. According to this <a target="_blank" rel="noopener" href="https://www.worldometers.info/computers/#:~:text=But%20how%20many%20computers%20are,billion%20by%20the%20year%202015.">website</a>, we can estimate that there are about four billion personal computers being used world-wide today (I’m assuming the military grade tech is kind of out of our reach). Parallelizing this algorithm across every single computer in the world that is active and running right now, the program would terminate after running for $1.3$ days <sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></p>
+<p>So we can agree that this is going nowhere (honestly I only wrote this entire section to engage in these fun hypotheticals).</p>
+<img style="padding: 10px;" width="450" height="450" src="http://asuresh213.github.io/2021/05/11/PE484/joke1.png">
+
+
+<h2 id="Can-you-crunch-those-numbers-again"><a href="#Can-you-crunch-those-numbers-again" class="headerlink" title="Can you crunch those numbers again?"></a>Can you crunch those numbers again?</h2><p>-<em>Micheal Scott. Founder, Micheal Scott paper company</em></p>
+<p>So we are back at our drawing board again. This time around, armed with some idea of how our previous algorithm fits together – we are going to approach it in a more ground-up way. Lets not take any arbitrary number $n$, and instead let $n=p^\alpha$ where $\alpha \geq 1$. Since (integer-)exponents are just glorified products, we readily see that the power rule of normal derivatives applies to arithmetic derivatives as well! So<br>$$n’ = \alpha p^{\alpha - 1}$$<br>This is quite cool! Moreover, we can also get $$\mathrm{gcd}(n,n’) = p^{\alpha - 1} \mathrm{gcd}(\alpha, p)$$<br>Now, in the case that $\alpha$ and $p$ are coprime, it is straightforward that $\mathrm{gcd}(\alpha, p) = 1$ and in the case where $p|\alpha$, we have $\mathrm{gcd}(\alpha, p) = p$ (to make it a bit more apparent, $\alpha$ can be composite. So write it’s prime factorization and consider both cases). So this gives us a pretty nice formula. Given $n = p^\alpha$ with $p$ prime and $\alpha \geq 1$,<br>$$g(n) = \mathrm{gcd}(n,n’) = \begin{cases} p^{\alpha}; &amp; p|\alpha \\ p^{\alpha-1}; &amp; p\not|\alpha \end{cases} = \begin{cases} n; &amp; p|\alpha \\ \frac{n}{p}; &amp; p\not|\alpha \end{cases}$$<br>So,<br><font style="color:orange;"><strong>Fact 1:</strong></font> $g$ is nice for prime powers.</p>
+<hr>
+<p>This is actually quite good, we are making progress, we have probably cut down so much of the computational complexity. But we can do better. Lets up the difficulty a notch. What if $n = p^{\alpha}n_1$ where $n_1 \in \mathbb{Z}$ such that it is coprime to $p$? Well, in this case, $$g(n) = \mathrm{gcd}(n,n’) = \mathrm{gcd}(p^{\alpha}n_1, \alpha p^{\alpha-1}n_1 + p^{\alpha}n_1’)$$<br>Which honestly looks like a mess. So we naturally go to wikipedia and look at GCD properties (looking for some distributive-esque properties). We discover that the following two serve very useful</p>
+<ul>
+<li>$\mathrm{gcd}(a+mb,b) = \mathrm{gcd}(a,b)$</li>
+<li>$\mathrm{gcd}(da + db) = d \cdot \mathrm{gcd}(a,b)$</li>
+</ul>
+<p>In our case, we can simplify that expression as follows.<br>$$\mathrm{gcd}(p^{\alpha}n_1, \alpha p^{\alpha-1}n_1 + p^{\alpha}n_1’) = \left[p^{\alpha -1}\mathrm{gcd}(p,\alpha)\right]\mathrm{gcd}\left(n_1, \frac{\alpha}{\mathrm{gcd}(p,\alpha)}n_1 + n_1’\right)$$<br>where we used the second property of GCD listed above. To explain it a bit further, obviously $p^{\alpha -1}$ is a common factor. But there is more! In the case of $p|\alpha$ we get another factor of $p$ (both among $p$ and $\alpha$) that we can factor out (and in case $p\not| \alpha$, $\mathrm{gcd}(p,\alpha) = 1$ anyway. So it doesn’t hurt to factor that out.)</p>
+<p>Now, we use property $2$ in reverse for $\left[p^{\alpha -1}\mathrm{gcd}(p,\alpha)\right]$ to see $$\left[p^{\alpha -1}\mathrm{gcd}(p,\alpha)\right] = \mathrm{gcd}(p^\alpha, \alpha p^{\alpha -1 }) = g(p^{\alpha})$$<br>We use first property in $\mathrm{gcd}\left(n_1, \frac{\alpha}{\mathrm{gcd}(p,\alpha)}n_1 + n_1’\right)$ to see that<br>$$\mathrm{gcd}\left(n_1, \frac{\alpha}{\mathrm{gcd}(p,\alpha)}n_1 + n_1’\right) = \mathrm{gcd}(n_1, n_1’) = g(n_1)$$</p>
+<p>So putting everything together, we have<br>$$g(n) = g(p^\alpha n_1) = g(p^{\alpha})g(n_1)$$<br>This tells us that $g$ is a multiplicative function! This means we only have to focus on prime numbers alone (and not necessarily all numbers from $2 \rightarrow L$).</p>
+<p>So,<br><font style="color:orange;"> <strong>Fact 2:</strong> Fact 1 </font> just got 200 times nicer; because given $n=\prod_{i=1}^r p_i^{\alpha_i}$,$$g(n) = \prod_{i=1}^r g(p_i^{\alpha_i})$$</p>
+<hr>
+<p>This is really good! Now the game plan is to find every prime under $n$ and then compute the required sum from there using the multiplicative property. But here even with the most optimized code, our time complexity is still $\mathcal{O}(n)$ because we have to construct every number under $n$ at least once. I welcome you to write a script with these new modifications and run it to see why $\mathcal{O}(n)$ is still very slow for an average computer.  Now going back to the plot I made with the run times for my initial naive attempt, it looks like $10^{15}$ is unattainable by realistic standards, but $10^{7}$ sounds doable. So maybe, if we could write an algorithm that is $\mathcal{O}(\sqrt{n})$, we might just be able to solve this.</p>
+<p>But this means, we have to somehow cut the number of computations down to its geometric half. Let us go back and see if there is some other nice property that we have missed so far…</p>
+<p>Going back to the case where $n=p^e$, what happens when $e=1$, well $n’ = 1$, and so $g(n)=1$. Since $g$ is multiplicative, this means for any square free number $n$, we have $g(n) = 1$! <sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>. In fact, we can do even better! Notice that for any $n = p^{\alpha}n_1$ with $\alpha &gt; 1$ and $n_1$ being square free, $g(n)  = g(p^{\alpha})$.</p>
+<p>To write this out properly as a fact, we need the following definition (to make writing a lot easier).</p>
+<blockquote>
+<p>A positive integer $n$ is a powerful integer if we have for any prime $p$ satisfying $p|n$, we also have $p^2|n$.</p>
+</blockquote>
+<p>That is to say, in the prime factorization of a powerful number $n$, all exponents are strictly greater than $1$</p>
+<p>So, we can use this definition to obtain the following fact<br><font style="color:orange;"> <strong>Fact 3:</strong> </font> for any powerful number $n_1$ and squarefree number $n_2$, $g(n_1 \cdot n_2) = g(n_1)$.</p>
+<hr>
+<p>This gives us a really cool idea! If $n$ is a powerful number under $L$, for every square free number $r$ under $\left \lfloor{L/n} \right\rfloor$ we have $g(nr) = g(n)$. So we just need a way to get all the powerful numbers under $L$ and find the number of squarefree numbers under $\left \lfloor{L/n} \right\rfloor$ for any given powerful $n$.</p>
+<p>This is because given some powerful $n$, and $t$ squarefree numbers under $\left \lfloor{L/n} \right\rfloor$, $g(n)$ is going to be added $t$ times in the final sum we are trying to calculate! So we simply calculate $g(n)$ and multiply it by $t$!</p>
+<p>Now, the real question is, can this be achieved in $\mathcal{O}(\sqrt{n})$? The answer is, if you are careful with your code, it is possible!</p>
+<p>First of all we need a way to enumerate all the powerful numbers under $L$. The beautiful thing about powerful numbers is that there are only about $2\sqrt{L}$ of them (see if you can understand why). With a clever way of enumerating them, you can get this process running in $\mathcal{O}(\sqrt{n})$. This clever way of enumerating them is called Dynamic programming and that’s what I’ll cover in the next section.  </p>
+<p>Now comes the issue of finding the number of square free numbers under a given number, and fortunately for us, this is not hard either! A quick search reveals <a target="_blank" rel="noopener" href="https://mathworld.wolfram.com/Squarefree.html">this goldmine</a> where we can find a sublinear algorithm that is $\mathcal{O}(\sqrt{n})$ as well!</p>
+<p>Particularly, I am talking about<br>$$Q(n) = \sum_{d=1}^{\sqrt{n}} \mu(d)\left \lfloor{\frac{n}{d^2}} \right\rfloor$$<br>where $Q(n)$ equals the number of square-free numbers under $n$ and $\mu(d)$ is the Mobius function defined via.<br>$$\mu(d) = \begin{cases}<br>1 &amp; n \text{ is square free with even number of prime factors} \\ -1 &amp; n \text{ is square free with odd number of prime factors} \\ 0 &amp; \text{ otherwise }<br>\end{cases}$$</p>
+<hr>
+<p>Thus this is now our game plan:</p>
+<ul>
+<li>Use dynamic programming to obtain all powerful numbers under $L$ and their corresponding $g$-values.</li>
+<li>For each powerful number $n$, find the number $t$ of square-free numbers under $\left \lfloor{L/n} \right\rfloor$<ul>
+<li>sum up $t \times g(n)$ as you go!</li>
+</ul>
+</li>
+</ul>
+<p>Now we win!</p>
+<p>This is in-fact, how I solved the problem. It took quite a bit of time to run, but nothing very unrealistic. The total run-time of this algorithm was $68$ minutes (give or take $5$ minutes) in interpreted python.</p>
+<hr>
+<h2 id="In-order-to-understand-recursion…"><a href="#In-order-to-understand-recursion…" class="headerlink" title="In order to understand recursion…"></a>In order to understand recursion…</h2><p><em>(One must first understand recursion)</em></p>
+<p>In this section I will give a general outline on how to turn the above game-plan into code. I highly recommend looking over <a href="https://asuresh213.github.io/2021/05/14/dynamic/">this post</a> if you have not seen dynamic (or recursive) programming before.</p>
+<p>Since you are reading on, I am going to assume you generally know how recursion works, and the very basics of how to make recursion better via dynamic programming. Now back to our problem. We are happy that there are only about $2\sqrt{L}$ powerful numbers – but how are we going to find them? An approach would be to use something like the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Sieve of Eratosthenes</a> to generate all prime numbers under $\sqrt{L}$. In fact, as you generate the primes, you could also compute $\mu(d)$ for every $d \leq \sqrt{L}$ rather easily (when you mark multiples $rp$ of $p$ as not prime, just keep track of the number of factors $r$ and assign $\mu(rp)$ accordingly). This will help us out when we are trying to calculate the number of square-free numbers under $\left \lfloor{L/n} \right\rfloor$ for some powerful $n$.</p>
+<p>Once the primes are generated, we run through the array of primes and to each prime $p$, we compute its successive powers until we reach $n$ such that $p^n &gt; L$. We store these values in a 2-D grid. Say if $L=50$ the 2-D grid would look like<br>\begin{bmatrix}  [2 &amp; 4 &amp; 8 &amp; 16 &amp; 32] \\ [3 &amp; 9 &amp; 27] &amp; &amp; \\ [5 &amp; 25] &amp; &amp; &amp; \\ [7 &amp; 49] &amp; &amp; &amp;\end{bmatrix}</p>
+<p>Now it’s time for some dynamic programming. For the first prime $p_1$, we start with $p_1^2$ (and add it to an empty list). We check if $p_1^2\cdot p_2 &gt; L$, if it is, there is no point in continuing at all. If on the other hand $p_1^2 \cdot p_2 \leq L$, then we check if $p_1^2p_2^2 \leq L$. If it is, we have a powerful number and we add it to our list of powerful numbers (If not we proceed to $p_1^2p_3$ and then if it is $\leq L$ we go check $p_1^2p_3^2$ and so on). In the case $p_1^2p_2^2$ was a valid powerful number, we call the function again, but this time, with $p_1^2p_2^2$ as an input and we check if $p_1^2p_2^2p_3 \leq L$, if it is, we check $p_1^2p_2^2p_3^2$ and continue like that. Of course every time we find a powerful number, we add it’s $g$ value to a different list as they will serve useful while we are computing the final sum.</p>
+<p>To exemplify this, let us consider the case $L=50$. Let <code>pow</code> = [1]. We start with $p_1 = 2$, so <code>pow = [1,4]</code> for now. Now we check if $4\cdot 3 \leq 50$, which it is. Now, we check $4\cdot 3^2 = 36 \leq L$ so we get another powerful number that we append to <code>pow</code>. So <code>pow = [1,4,36]</code>. Now we call the main function with <code>36</code> to check if $36 \cdot 5 \leq L$, which it isn’t. So we stop and return the list to the previous recursion where it is stored under a new variable <code>new_pow</code>. <code>pow</code> however in this level of recursion is still <code>pow = [1, 4]</code> and now we check if $4 \cdot 3^3 \leq L$, which it isn’t so we stop proceeding down the 2-D grid and just return <code>new_pow</code> to the main level where <code>pow = [1]</code>. Now we proceed to <code>8</code> and append it to <code>pow</code> and check if $8 \cdot 3 \leq L$, which it is. Now we check $8 \cdot 3^2 &gt; L$ so we ignore the rest of the second row. We move on to the third row to see if $8\cdot 5 \leq L$ which it is, and we check $8 \cdot 25 &gt; 50$ so we ignore the rest of the third row. And for the fourth row, $8\cdot 7 &gt; L$, so we don’t even bother going down that row. And that’s it for $8$, so we return <code>pow = [1,8]</code> to the previous recursion, where the <code>new_pow</code> is updated with the new value $8$. Then we proceed onto $16$ so on… By the end of the process we would have enumerated all the powerful numbers!</p>
+<p>This process looks like it is doing much more than $\sqrt{L}$ but as the primes get bigger, their corresponding powers that fit under $L$ gets smaller and smaller, and after a while we will only have to do one extra check per-prime, and the process is more or less $\mathcal{O}(\sqrt{L})$.</p>
+<p>We have already computed all the $\mu$ values while the primes were generated using the sieve, and we already have the $g$ values for all the powerful numbers under $\sqrt{L}$. Implementing $Q(n)$ is not a terribly hard task after having all the necessary values. So that’s another $\mathcal{O}(\sqrt{L})$ process and there we have it!</p>
+<h2 id="Alternate-approach"><a href="#Alternate-approach" class="headerlink" title="Alternate approach"></a>Alternate approach</h2><p>Here I will introduce a different really exciting alternative (faster) method that you could potentially pursue. This is an alternative method I read about in the discussion forum (restricted only to users who have solved the problem). For that very reason I must warn you – I am not going to discuss these methods in greater length nor am I going to be as thorough with them as I was with my method. Particularly because I think they are utterly brilliant and I would like you to figure them out for yourself!</p>
+<p><font style="color:#00b5d9;"><strong>Exercise 1:</strong></font> Read on the <a href="M%C3%B6bius_inversion_formula">Mobius inversion</a> formula – use other sources if you must. In the language of <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dirichlet_convolution">Dirichlet convolutions</a> consider $f = g * \mu$. What is $g$ in (Dirichlet) terms of $f$? Can you convert that into a sum of sorts?</p>
+<p><font style="color:#00b5d9;"><strong>Exercise 2:</strong></font> Can you write $\sum_{i=1}^L g$ in terms of $f$? (I recommend writing out few of the initial terms to get a feeling for it).</p>
+<p><font style="color:#00b5d9;"><strong>Exercise 3:</strong></font> For some prime $p$ what is $f(p^e)$? What about $f(p_1^{\alpha_1}p_2^{\alpha_2})$? What can we conclude about $f$? What can we say about $f(n)$ when $n$ is not powerful?</p>
+<p><font style="color:#00b5d9;"><strong>Exercise 4:</strong></font> Put it all together to simplify $\sum_{i=1}^L g$ in terms of some sum of $f(i)$ and implement it in code!  </p>
+<hr>
+<p>As a reward for making through this blog post, here is a funny cartoon:<br><img style="padding: 10px;" width="450" height="450" src="http://asuresh213.github.io/2021/05/11/PE484/joke2.png"></p>
+<p><font style="font-size:0.75vw;"> <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">Especially because we know it’s going to crash and burn.</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;">Of course I am assuming that the GPU capacity of every computer out there is the same as mine.<br>But I guess I can do this because<br>a. This is my blog.<br>b. On average, compared to my fairly average laptop with a fairly average GPU, the amount of<br>computers with worse or NO GPUs are equal to the number of computers with better GPUs - so the<br>differences cancel out.</span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;">$n = \prod_{i=1}^r p_i^{\alpha_i}$ is square free if and only if $\alpha_i = 1$ for all $i$</span></li></ol></div></div></font><a href="#fnref:3" rev="footnote"> ↩</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Question-statement"><span class="toc-number">1.</span> <span class="toc-text">Question statement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Et-tu-Brute-Force"><span class="toc-number">2.</span> <span class="toc-text">Et-tu Brute Force</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Can-you-crunch-those-numbers-again"><span class="toc-number">3.</span> <span class="toc-text">Can you crunch those numbers again?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#In-order-to-understand-recursion%E2%80%A6"><span class="toc-number">4.</span> <span class="toc-text">In order to understand recursion…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alternate-approach"><span class="toc-number">5.</span> <span class="toc-text">Alternate approach</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2021/05/11/PE484/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2021/05/11/PE484/&text=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2021/05/11/PE484/&title=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2021/05/11/PE484/&is_video=false&description=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Arithmetic derivatives and outsmarting the heat death of the unvierse&body=Check out this article: http://asuresh213.github.io/2021/05/11/PE484/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2021/05/11/PE484/&title=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2021/05/11/PE484/&title=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2021/05/11/PE484/&title=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2021/05/11/PE484/&title=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2021/05/11/PE484/&name=Arithmetic derivatives and outsmarting the heat death of the unvierse&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2021/05/11/PE484/&t=Arithmetic derivatives and outsmarting the heat death of the unvierse"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2024
+    Arun Suresh
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+
+<!-- SAGE stuff. Shamelessly stolen from
+      https://github.com/sheaves/sheaves.github.io/blob/master/_layouts/default.html
+    -->
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <!-- Cell definitions -->
+    <script>$(function () {
+    // Basic Python cell. Use <div class = "python">
+    // sagecell.makeSagecell({inputLocation: '.python', languages : ['python']});
+    // Basic Sage cell. Use <div class = "sage">
+    sagecell.makeSagecell({inputLocation: '.sage'});
+    // Gap cell. Use <div class = "gap">
+    sagecell.makeSagecell({inputLocation: '.gap', languages : ['gap']});
+    // R cell. Use <div class = "r">
+    sagecell.makeSagecell({inputLocation: '.r_e', linked:true, languages : ['r']});
+    // Auto evaluate Sage. Use <div class="auto">
+    sagecell.makeSagecell({inputLocation: '.auto', autoeval: 'True'});
+    // No editor, auto evaluate Sage. Use <div class="auto_out">
+    sagecell.makeSagecell({inputLocation: '.auto_out', autoeval: 'True', hide: ["editor", "evalButton", "editorToggle"]});
+   // No evalButton. Use <div class="no_eval">
+    sagecell.makeSagecell({inputLocation: '.no_eval', hide: ["evalButton", "editorToggle"]});
+    // No evalautoButton. Use <div class="r_no_auto_eval">
+    sagecell.makeSagecell({inputLocation: '.r_no_auto_eval', linked:true, hide: ["editor", "editorToggle"], languages : ['r']});
+    // No output. Use <div class="no_out">
+    sagecell.makeSagecell({inputLocation: '.no_out', hide: ["evalButton", "editorToggle","output"]});
+    // Only the 'Go!' button; no input displayed. Use <div class="go">
+    sagecell.makeSagecell({inputLocation:  '.go', autoeval: 'True',
+                       template:       sagecell.templates.minimal,
+                       evalButtonText: 'Go!'});
+    // Linked Sage cell. Use <div class ="linked">
+    sagecell.makeSagecell({inputLocation: '.linked', linked: 'True'});
+    // Linked Sage cell with autoeval. Use <div class ="linked_auto">
+    sagecell.makeSagecell({inputLocation: '.linked_auto', linked: 'True', autoeval: 'True'});
+    // All languages. Use <div class = "all">
+        sagecell.makeSagecell({inputLocation: '.all', languages: sagecell.allLanguages});
+    });
+    </script>
+    <!-- Basic Sage -->
+    <script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
