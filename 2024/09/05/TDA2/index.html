@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Recap and introductionIn the previous post we encountered the notion of a barcode of a simplicial complex as a way to capture it’s topological features. From a data science stand point, this was motiv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Topological Data Analysis - Part 2 - $\Delta$ from Data.">
+<meta property="og:url" content="http://asuresh213.github.io/2024/09/05/TDA2/index.html">
+<meta property="og:site_name" content="Arun Suresh">
+<meta property="og:description" content="Recap and introductionIn the previous post we encountered the notion of a barcode of a simplicial complex as a way to capture it’s topological features. From a data science stand point, this was motiv">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA2/Cheh.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA2/vrcech.png">
+<meta property="article:published_time" content="2024-09-05T22:56:58.000Z">
+<meta property="article:modified_time" content="2024-12-01T21:47:28.707Z">
+<meta property="article:author" content="Arun Suresh">
+<meta property="article:tag" content="Research">
+<meta property="article:tag" content="TDA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://asuresh213.github.io/2024/09/05/TDA2/Cheh.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Topological Data Analysis - Part 2 - $\Delta$ from Data.</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2024/10/05/Non%20academic%20ventures/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2024/09/05/TDA1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2024/09/05/TDA2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2024/09/05/TDA2/&text=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2024/09/05/TDA2/&title=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2024/09/05/TDA2/&is_video=false&description=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Topological Data Analysis - Part 2 - $\Delta$ from Data.&body=Check out this article: http://asuresh213.github.io/2024/09/05/TDA2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2024/09/05/TDA2/&title=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA2/&title=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA2/&title=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA2/&title=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2024/09/05/TDA2/&name=Topological Data Analysis - Part 2 - $\Delta$ from Data.&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2024/09/05/TDA2/&t=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Recap-and-introduction"><span class="toc-number">1.</span> <span class="toc-text">Recap and introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#The-Cech-complex-of-mathcal-X"><span class="toc-number">2.</span> <span class="toc-text">The Čech complex of $\mathcal{X}$</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#The-Vietoris-Rips-complex-of-mathcal-X"><span class="toc-number">3.</span> <span class="toc-text">The Vietoris Rips complex of $\mathcal{X}$</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Delaunay-complex-of-mathcal-X"><span class="toc-number">4.</span> <span class="toc-text">Delaunay complex of $\mathcal{X}$</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Alpha-Shape-complex-of-mathcal-X"><span class="toc-number">5.</span> <span class="toc-text">Alpha Shape complex of $\mathcal{X}$</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Topological Data Analysis - Part 2 - $\Delta$ from Data.
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Arun Suresh</span>
+      </span>
+      
+    <div class="postdate">
+      
+        (Last updated: <time datetime="2024-09-05T22:56:58.000Z" itemprop="datePublished">2024-12-01</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Research/" rel="tag">Research</a>, <a class="tag-link-link" href="/tags/TDA/" rel="tag">TDA</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Recap-and-introduction"><a href="#Recap-and-introduction" class="headerlink" title="Recap and introduction"></a>Recap and introduction</h1><p>In the <a href="http://asuresh213.github.io/2024/09/05/TDA1/">previous post</a> we encountered the notion of a barcode of a simplicial complex as a way to capture it’s topological features. From a data science stand point, this was motivated by the fact that any smooth manifold (that we typically expect to model our data) is homeomorphic to a simplicial complex that is built out of higher dimensional analogues of triangles, called simplices. By considering sub-complexes of a simplicial complex, we can naturally filter a finite dimensional simplicial complex into a finite filtration: $\Delta_1 \subseteq \Delta_2 \subseteq \dots \subseteq \Delta$.</p>
+<p>In this post, we will discuss some standard ways how we can build a simplicial complex from a finite collection of data points $\mathcal{X}$ in $\mathbb{R}^n$ (or any metric space for that matter). To this end, suppose that we are given a finite data point $\mathcal{X} \subseteq \mathbb{R}^n$.</p>
+<h1 id="The-Cech-complex-of-mathcal-X"><a href="#The-Cech-complex-of-mathcal-X" class="headerlink" title="The Čech complex of $\mathcal{X}$"></a>The Čech complex of $\mathcal{X}$</h1><p>Fix a parameter $r \in \mathbb{R}$. The Čech complex $Č_r(\mathcal{X})$ at parameter level $r$ is constructed as follows:<br>    1. Each point $x\in \mathcal{X}$ constitute the vertices of the Čech complex<br>    2. Now consdier $B(x, r)$ for each $x \in \mathbb{X}$.<br>    $\qquad$ a. Any $k-$fold intersection of these balls is a $(k-1)-$simplex of the Čech complex between the corresponding vertices.</p>
+<p>That is, there is an edge between Čech vertices $x_1$ and $x_2$ if the balls $B(x_1, r)$ and $B(x_2, r)$ intersect. Similarly three fold intersections correspond to a $2-$simplex (a triangle) between the corresponding three vertices, and so on.</p>
+<p>The following diagram makes this process clear:<br><img style="padding: 10px;" width="375" height="375" src="http://asuresh213.github.io/2024/09/05/TDA2/Cheh.png"><br><a target="_blank" rel="noopener" href="https://www.researchgate.net/figure/Example-of-a-Cech-complex-taken-from-10_fig3_376616275">image credit</a></p>
+<p>Notice that if $r_1 &lt; r_2$, then we immediately see that $Č_{r_1}(\mathcal{X}) \subseteq Č_{r_2}(\mathcal{X})$ because if two balls intersect at radius $r_1$ intersect, then they certainly still interesect after “growing” the radius to $r_2$. Moreover, there is also a critical radius $r^* = \mathrm{diam}(\mathcal{X})$<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> such that $Č_{r}(\mathcal{X}) = Č_{r^*}(\mathcal{X})$ for all $r&gt;r^*$ since at this level we every ball would pairwise intersect every other ball.</p>
+<p>Given a tolerance level $\epsilon$, this gives us a very natural finite filtration of the Čech complex, namely<br>$$Č_{0}(\mathcal{X}) \subseteq Č_{\epsilon}(\mathcal{X}) \subseteq Č_{2\epsilon}(\mathcal{X}) \subseteq \dots \subseteq Č_{r^*}(\mathcal{X})$$</p>
+<h1 id="The-Vietoris-Rips-complex-of-mathcal-X"><a href="#The-Vietoris-Rips-complex-of-mathcal-X" class="headerlink" title="The Vietoris Rips complex of $\mathcal{X}$"></a>The Vietoris Rips complex of $\mathcal{X}$</h1><p>The Čech complex, while extremely intuitive to understand, is computationally messy to compute since it involves determining when two balls intersect, and computing general intersections is a hard computational problem. However, we can take advantage of the fact that these are balls, and cut some corners. This gives rise to the Vietoris complex of $\mathcal{X}$ which is a less refined version of the Čech complex - but is computationally much less expensive.</p>
+<p>The Vietoris-Rips $VR_r(\mathcal{X})$ complex at parameter level $r$ is constructed as follows:<br>    1. Consider a non-empty subset $X \subseteq \mathcal{X}$ of cardinality $k \geq 1$<br>    2. Deem that $X$ forms a $(k-1)-$simplex of $VR_r(\mathcal{X})$ if $\mathrm{diam}(X) \leq 2r$<br>    3. Repeat this for all non-empty subsets of $\mathcal{X}$.</p>
+<p>Note that at any given parameter level $VR_r(\mathcal{X})$ contains $Č_{r}(\mathcal{X})$, since in Vietoris rips complex it is possible to get a $k-$simplex even without mutual $k-$fold intersection, but it is impossible to obtain that in the Čech complex. Here is an example to illustrate this phenomenon: </p>
+<p>Let $\mathcal{X}$ be the vertices of a square of side length $2$. At parameter level $r=1$, the Čech complex gives us the four edges of the square because all four balls of radius 1 are tangential to each other. On the other hand, the VietorisRips complex has additional $2-$simplices because for any vertex $x$, we have it’s two adjacent neighbors $x_1$ and $x_2$ such that $\mathrm{diam}(x,x_1,x_2) \leq 2$ thereby forming a $2-$simplex that is not present in the Čech complex.</p>
+<p>Alternatively, here is a pictorial proof:<br><img style="padding: 10px;" width="375" height="375" src="http://asuresh213.github.io/2024/09/05/TDA2/vrcech.png"><br><a target="_blank" rel="noopener" href="https://www.justinmath.com/intuiting-persistent-homology/">image credit</a></p>
+<p>The above illustrates the sense in which the VR complex is a slightly less refined than the Čech complex. However, calculating pairwise distances is still much easier than checking for interesctions! The VR complex also admits a natural finite filtration much like the Čech complex (given a tolerance level $\epsilon$):<br>$$VR_0(\mathcal{X}) \subseteq VR_\epsilon(\mathcal{X}) \subseteq VR_{2\epsilon}(\mathcal{X}) \subseteq \dots \subseteq VR_{r^*}(\mathcal{X}).$$<br>For computational purposes the VR complex remains robust enough.  For our classifier implementation in <font style="color:orange;"> part 3 </font>, we will use the VR complex to build our simplicial filtration.</p>
+<h1 id="Delaunay-complex-of-mathcal-X"><a href="#Delaunay-complex-of-mathcal-X" class="headerlink" title="Delaunay complex of $\mathcal{X}$"></a>Delaunay complex of $\mathcal{X}$</h1><p>– Coming soon –</p>
+<h1 id="Alpha-Shape-complex-of-mathcal-X"><a href="#Alpha-Shape-complex-of-mathcal-X" class="headerlink" title="Alpha Shape complex of $\mathcal{X}$"></a>Alpha Shape complex of $\mathcal{X}$</h1><p>– Coming soon – </p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;">If $T \subseteq \mathbb{R}^n$ is a finite subset, $\mathrm{diam}(T)$ is the largest distance between any two points of $T$.</span><a href="#fnref:1" rev="footnote"> ↩</a></li></ol></div></div>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Recap-and-introduction"><span class="toc-number">1.</span> <span class="toc-text">Recap and introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#The-Cech-complex-of-mathcal-X"><span class="toc-number">2.</span> <span class="toc-text">The Čech complex of $\mathcal{X}$</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#The-Vietoris-Rips-complex-of-mathcal-X"><span class="toc-number">3.</span> <span class="toc-text">The Vietoris Rips complex of $\mathcal{X}$</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Delaunay-complex-of-mathcal-X"><span class="toc-number">4.</span> <span class="toc-text">Delaunay complex of $\mathcal{X}$</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Alpha-Shape-complex-of-mathcal-X"><span class="toc-number">5.</span> <span class="toc-text">Alpha Shape complex of $\mathcal{X}$</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2024/09/05/TDA2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2024/09/05/TDA2/&text=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2024/09/05/TDA2/&title=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2024/09/05/TDA2/&is_video=false&description=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Topological Data Analysis - Part 2 - $\Delta$ from Data.&body=Check out this article: http://asuresh213.github.io/2024/09/05/TDA2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2024/09/05/TDA2/&title=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA2/&title=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA2/&title=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA2/&title=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2024/09/05/TDA2/&name=Topological Data Analysis - Part 2 - $\Delta$ from Data.&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2024/09/05/TDA2/&t=Topological Data Analysis - Part 2 - $\Delta$ from Data."><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2024
+    Arun Suresh
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+
+<!-- SAGE stuff. Shamelessly stolen from
+      https://github.com/sheaves/sheaves.github.io/blob/master/_layouts/default.html
+    -->
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <!-- Cell definitions -->
+    <script>$(function () {
+    // Basic Python cell. Use <div class = "python">
+    // sagecell.makeSagecell({inputLocation: '.python', languages : ['python']});
+    // Basic Sage cell. Use <div class = "sage">
+    sagecell.makeSagecell({inputLocation: '.sage'});
+    // Gap cell. Use <div class = "gap">
+    sagecell.makeSagecell({inputLocation: '.gap', languages : ['gap']});
+    // R cell. Use <div class = "r">
+    sagecell.makeSagecell({inputLocation: '.r_e', linked:true, languages : ['r']});
+    // Auto evaluate Sage. Use <div class="auto">
+    sagecell.makeSagecell({inputLocation: '.auto', autoeval: 'True'});
+    // No editor, auto evaluate Sage. Use <div class="auto_out">
+    sagecell.makeSagecell({inputLocation: '.auto_out', autoeval: 'True', hide: ["editor", "evalButton", "editorToggle"]});
+   // No evalButton. Use <div class="no_eval">
+    sagecell.makeSagecell({inputLocation: '.no_eval', hide: ["evalButton", "editorToggle"]});
+    // No evalautoButton. Use <div class="r_no_auto_eval">
+    sagecell.makeSagecell({inputLocation: '.r_no_auto_eval', linked:true, hide: ["editor", "editorToggle"], languages : ['r']});
+    // No output. Use <div class="no_out">
+    sagecell.makeSagecell({inputLocation: '.no_out', hide: ["evalButton", "editorToggle","output"]});
+    // Only the 'Go!' button; no input displayed. Use <div class="go">
+    sagecell.makeSagecell({inputLocation:  '.go', autoeval: 'True',
+                       template:       sagecell.templates.minimal,
+                       evalButtonText: 'Go!'});
+    // Linked Sage cell. Use <div class ="linked">
+    sagecell.makeSagecell({inputLocation: '.linked', linked: 'True'});
+    // Linked Sage cell with autoeval. Use <div class ="linked_auto">
+    sagecell.makeSagecell({inputLocation: '.linked_auto', linked: 'True', autoeval: 'True'});
+    // All languages. Use <div class = "all">
+        sagecell.makeSagecell({inputLocation: '.all', languages: sagecell.allLanguages});
+    });
+    </script>
+    <!-- Basic Sage -->
+    <script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
