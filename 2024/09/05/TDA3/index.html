@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Recap and introductionIn Part 1 of this post we developed the notion of a simplicial complex - which is a shape built out of triangles (and their higher dimensional analogues), and we gave a theoretic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Topological Data Analysis - Part 3 - Building a topological classifier.">
+<meta property="og:url" content="http://asuresh213.github.io/2024/09/05/TDA3/index.html">
+<meta property="og:site_name" content="Arun Suresh">
+<meta property="og:description" content="Recap and introductionIn Part 1 of this post we developed the notion of a simplicial complex - which is a shape built out of triangles (and their higher dimensional analogues), and we gave a theoretic">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/pers_diag.jpg">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/ptcircle.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/ptsphere.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/pttor.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/ptplane.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/circ.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/sphere.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/Torus.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/plane.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/entropies.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/rf.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/entropyvision.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/rf_take1.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/pipeline.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/rel_imp.png">
+<meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/meme.jpg">
+<meta property="article:published_time" content="2024-09-05T22:56:58.000Z">
+<meta property="article:modified_time" content="2024-12-18T04:41:36.389Z">
+<meta property="article:author" content="Arun Suresh">
+<meta property="article:tag" content="Research">
+<meta property="article:tag" content="TDA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://asuresh213.github.io/2024/09/05/TDA3/pers_diag.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Topological Data Analysis - Part 3 - Building a topological classifier.</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2024/09/05/TDA2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2024/09/05/TDA1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2024/09/05/TDA3/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2024/09/05/TDA3/&text=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2024/09/05/TDA3/&title=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2024/09/05/TDA3/&is_video=false&description=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Topological Data Analysis - Part 3 - Building a topological classifier.&body=Check out this article: http://asuresh213.github.io/2024/09/05/TDA3/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2024/09/05/TDA3/&title=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA3/&title=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA3/&title=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA3/&title=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2024/09/05/TDA3/&name=Topological Data Analysis - Part 3 - Building a topological classifier.&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2024/09/05/TDA3/&t=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Recap-and-introduction"><span class="toc-number">1.</span> <span class="toc-text">Recap and introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Persistence-diagrams"><span class="toc-number">2.</span> <span class="toc-text">Persistence diagrams</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vectorizing-persistence-diagrams"><span class="toc-number">3.</span> <span class="toc-text">Vectorizing persistence diagrams</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Building-the-classifer-pipeline"><span class="toc-number">4.</span> <span class="toc-text">Building the classifer pipeline</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pitting-our-classifier-against-real-life-data"><span class="toc-number">5.</span> <span class="toc-text">Pitting our classifier against real life data</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Improving-our-model"><span class="toc-number">6.</span> <span class="toc-text">Improving our model</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Topological Data Analysis - Part 3 - Building a topological classifier.
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Arun Suresh</span>
+      </span>
+      
+    <div class="postdate">
+      
+        (Last updated: <time datetime="2024-09-05T22:56:58.000Z" itemprop="datePublished">2024-12-17</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Research/" rel="tag">Research</a>, <a class="tag-link-link" href="/tags/TDA/" rel="tag">TDA</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Recap-and-introduction"><a href="#Recap-and-introduction" class="headerlink" title="Recap and introduction"></a>Recap and introduction</h1><p>In <a href="http://asuresh213.github.io/2024/09/05/TDA1/">Part 1</a> of this post we developed the notion of a simplicial complex - which is a shape built out of triangles (and their higher dimensional analogues), and we gave a theoretical overview of how to construct the barcode of a simplicial complex - which boils down to doing some linear algebra over the field $\mathbb{F}_2$. The barcode (via homologies) of a simplicial complex gives a way to capture the topological data of the complex. In <a href="http://asuresh213.github.io/2024/09/05/TDA2/">Part 2</a> we took this abstract construction and made it more applicable - by illustrating various ways to construct simplicial complexes out of a given point cloud $\mathcal{X}$ thereby giving us access to the notion of a barcode associated to a point cloud $\mathcal{X}$.  This ultimately captures the topological datum of $\mathcal{X}$. In this last and final part, we will put parts 1 and 2 in action by building a random forest classifier that classifies point clouds $\mathcal{X}$ sampled from various shapes in $\mathbb{R}^3$ based on their topological features. </p>
+<p>Before we get to the implementation, we need to develop a few other tools that are going to translate our barcodes into vectorized objects that retain the topological information that could be fed into a classical machine learning classifier like the random forest classifier.</p>
+<h1 id="Persistence-diagrams"><a href="#Persistence-diagrams" class="headerlink" title="Persistence diagrams"></a>Persistence diagrams</h1><p>Recall from Part 1 that a barcode is a collection of $\mathcal{P}-$intervals $(i,j)$ corresponding to the lifetime of a certain topological feature as we progress through the simplicial filtration. In this section we introduce an equivalent notion of a persistence barcode, which is a persistence diagram.</p>
+<p><font style="color:#ba92c5;"><strong>Definition:</strong></font> A $\mathcal{P}-$interval $(i,j)$ found in a persistence barcode, can be interpreted as a point on the half-plane defined by the inequality $x\leq y$ and vice versa. Thus every interval present in a barcode corresponds uniquely to a point in this half-plane. This alternate interpretation yields the persistence diagram of a filtered simplicial complex $\Delta$.</p>
+<p>The following diagram illustrates these equivalent representations side-by-side for a simplicial complex built out of a point-cloud sampled from a torus:</p>
+<img style="padding: 10px;" width="575" height="575" src="http://asuresh213.github.io/2024/09/05/TDA3/pers_diag.jpg">
+[Image source](https://chance.amstat.org/2021/04/topological-data-analysis/)
+
+
+<h1 id="Vectorizing-persistence-diagrams"><a href="#Vectorizing-persistence-diagrams" class="headerlink" title="Vectorizing persistence diagrams"></a>Vectorizing persistence diagrams</h1><p>Although persistence barcodes (or equivalently, diagrams) are useful in displaying homological information - they can not be used directly in data science or machine learning applications. For instance, there is not a well-defined way to perform algebra on persistence diagrams. As such, there is a need to “vectorize” the information contained in these persistence barcodes. Many methods have been introduced to solve this issue. Some notable ones include convolving the diagram with a kernel function to produce a heat-map of the persistence information, while another approach introduces the notion of a “persistence landscape”, which is a family of $L^p$ functions that extract the persistence information from a persistence diagram. In our particular application, we will introduce a much simpler way to vectorize our persistence diagrams via what is known as persistence entropy. Intuitively, this takes the persistence diagram in each homology dimension, and produces a number that quantifies how far away it is from having <em>no</em> homology in that dimension. More precisely,</p>
+<p><font style="color:#ba92c5;"><strong>Definition:</strong></font> Given a persistence diagram as a collection $D = {(b_i, d_i)}_{i\in I}$ with $b_i &lt; d_i &lt; \infty$, the persistence entropy of $D$ is defined as<br>    $$E(D) = -\sum_{i\in I} p_i\log(p_i), \qquad \text{ where } p_i = \frac{d_i-b_i}{L_D} \text{ and } L_D = \sum_{i \in I} d_i-b_i$$</p>
+<p>With this, we are ready to jump into our application</p>
+<h1 id="Building-the-classifer-pipeline"><a href="#Building-the-classifer-pipeline" class="headerlink" title="Building the classifer pipeline"></a>Building the classifer pipeline</h1><p><font style="color:#73efff;"><strong>Note:</strong></font>  The code for the implementation can be found <a target="_blank" rel="noopener" href="https://github.com/asuresh213/Robust-subspace-recovery-and-tda/blob/main/_demo_TopMLwithGiotto.ipynb">in this jupyter notebook</a>.</p>
+<p>We will use the python library <a target="_blank" rel="noopener" href="https://giotto-ai.github.io/gtda-docs/0.5.1/library.html">Giotto-tda</a> to develop a topological machine learning pipeline that will classify point clouds sampled from various shapes in $\mathbb{R}^3$. For the first part of the application, we will train and test the classifier on synthetic data and measure baseline performance. The synthetic point clouds will be sampled from four different shape classes:</p>
+<ol>
+<li>A circle, posing dim 0, 1 homologies and no dim 2 homology (i.e, $\beta_\mathcal{X} = [1,1,0]$)</li>
+<li>A Sphere, posing dim 0, 2 homologies and no dim 1 homology (i.e, $\beta_\mathcal{X} = [1,0,1]$)</li>
+<li>A Torus, posing dim 0 homology, two dim 1 homologies and 1 dim 2 homology (i.e, $\beta_\mathcal{X} = [1,2,1]$)</li>
+<li>A Plane, posing dim 0 homology and no dim 1,2 homologies. (i.e, $\beta_\mathcal{X} = [1,0,0]$)</li>
+</ol>
+<p>We will sample $10$ different point clouds for each shape class, and each point cloud will be made up of $100$ points. Thus, our raw data is a tensor of shape $40\times 100 \times 3$. Here’s a sample of how each of our point clouds look:</p>
+<div class="row">
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/09/05/TDA3/ptcircle.png" alt="Circle" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/09/05/TDA3/ptsphere.png" alt="Sphere" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/09/05/TDA3/pttor.png" alt="Torus" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/09/05/TDA3/ptplane.png" alt="Plane" style="width:100%">
+  </div>
+</div>
+
+
+<p>We then construct the VietorisRips complex associated to each point cloud, and use it to generate it’s persistence diagram. This part is neatly packaged into a single function <code>gtda.get_diagrams</code> in Giotto. Below are the generated persistence diagram for each of the shapes illustrated above:</p>
+<div class="row">
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/09/05/TDA3/circ.png" alt="Circle" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/09/05/TDA3/sphere.png" alt="Sphere" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/09/05/TDA3/Torus.png" alt="Torus" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="http://asuresh213.github.io/2024/09/05/TDA3/plane.png" alt="Plane" style="width:100%">
+  </div>
+</div>
+
+
+<p>We see that the circle poses a strong dimension 1 homology, whereas a sphere produces a strong dimension 2 homology. We also see that the Torus exhibits multiple (two) strong dimension 1 homologies, and the plane has no significant homologies present in dimensions greater than 0. We will capture this observation mathematically via calling the entropy function on each of our persistence diagram. This gives us three numbers for each persistence diagram, with each number corresponding to the entropy in a homology dimension. Since we only compute up to dimension $2$ homologies, we can conveniently plot the entropies as points in $\mathbb{R}^3$. The plot is presented in figure below<br><img style="padding: 10px;" width="300" height="300" src="http://asuresh213.github.io/2024/09/05/TDA3/entropies.png"></p>
+<p>We can see that there are clearly four families of points, each corresponding to a different shape in our initial point cloud data.  Having successfully vectorized our persistence diagrams, we could use any of the various classifiers present in a robust machine learning package like scipy. In this case, since we can already visually confirm the presence of clusters, we can use something like the $\texttt{RandomForestClassifier}$ that is robust for such clustering problems. </p>
+<p><font style="color:#73efff;"><strong>Important upshot:</strong></font> The input to our classifier now is <em>just</em> 3 dimensional as opposed to 300 dimensional, had we fed in the entire point cloud with 100 points each with 3 numbers quantifying the x,y and z values! This is a substantial reduction of the input feature size from $300$ to just $3$ - an improvement by a factor of $d/N &lt;&lt; 1$! </p>
+<p>In addition to just substantial reduction of input feature size, we note that in this synthetic case, upon training we obtain convergence of our model with a ‘out-of-bag’ validation accuracy of 100%.</p>
+<img style="padding: 10px;" width="340" height="200" src="http://asuresh213.github.io/2024/09/05/TDA3/rf.png">
+
+
+<h1 id="Pitting-our-classifier-against-real-life-data"><a href="#Pitting-our-classifier-against-real-life-data" class="headerlink" title="Pitting our classifier against real life data"></a>Pitting our classifier against real life data</h1><p>Having seen considerable success in the toy model, we will test our classifier against real life point-cloud data obtained from <a target="_blank" rel="noopener" href="https://www.cs.princeton.edu/courses/archive/fall09/cos429/assignment3.html">here</a>. This dataset is freely available via the $\texttt{get_dataset}$ function in the openml library. The data file contains 40 different point clouds across 4 classes (i.e, 10 clouds per class), each with 400 points. </p>
+<p>For each of these point clouds, we once again build a VietorisRips Complex, generate persistence diagrams and compute the persistence entropy for each point cloud $\mathcal{X}$. This gives us a $400 \times 3$ input entropy matrix that we will use as features for our classifier. Like before, we also plot the entropies just to visually ascertain the presence of clusters:</p>
+<img style="padding: 10px;" width="340" height="200" src="http://asuresh213.github.io/2024/09/05/TDA3/entropyvision.png">
+
+<p>and we observe no nice clusters. This is expected out of real world data that doesn’t have just a single prominent topological feature. So we should expect our model to not perform very well; which is indeed the case:</p>
+<img style="padding: 10px;" width="340" height="200" src="http://asuresh213.github.io/2024/09/05/TDA3/rf_take1.png">
+
+<p>Although 60% do not sound very impressive, it is worth noting that with four shape classes - just random guessing will only give an $\texttt{oob_score}$ of just 0.25. </p>
+<h1 id="Improving-our-model"><a href="#Improving-our-model" class="headerlink" title="Improving our model"></a>Improving our model</h1><p>Note that the above model has effectively improved the input feature size from $N$ to just $3$. So, one way to improve our model is to extract more topological quantifiers, and their vectorized versions as additional inputs to our classifier. For instance by only using the PersistenceEntropy to classify our shapes, we are averaging out the distribution of points on the persistence diagram which might hold important information - for instance, the number of off-diagonal points in our persistence diagrams could be a great predictor of how clean our homology is, which is bound to change between different classes (and thus might be a good predictor). In addition to persistence entropy, we can also have other measures of “amplitudes” that detect how far away a given persistence diagram is from the trivial persistence diagram (of the empty-set, where no homological information is observed in any dimension). Giotto comes built in with various standard amplitudes that are considered industry standard. Each of these amplitude will contribute to three new features (one for each homology dimension) that could potentially improve our classifier.</p>
+<p>We will package all these additional new features along with our persistence entropy into a pipeline and fit a RandomForest classifier to this new feature union.</p>
+<img style="padding: 10px;" width="400" height="200" src="http://asuresh213.github.io/2024/09/05/TDA3/pipeline.png">
+
+<p>As expected, the model does considerably better here, with an out-of-bag accuracy of 82.5%! We can now also rank the relative importance of each of the above topological features. This produces the following chart:</p>
+<img style="padding: 10px;" width="400" height="200" src="http://asuresh213.github.io/2024/09/05/TDA3/rel_imp.png">
+
+<p>From here it looks like the most prominent predictors turn out to be</p>
+<ol>
+<li>Bottleneck distance in dimension 2,</li>
+<li>The betti amplitude in dimension 1, and</li>
+<li>The Wasserstein metric in dimension 0</li>
+</ol>
+<p>where the Wasserstein metric behaves comparably to the betti amplitude in dimension 0 and the heat (homology contour) map in dimension 0.</p>
+<p>That is all for this data exploration – Thank you for sticking around! Here is a congratulatory meme for making it through.</p>
+<img style="padding: 10px;" width="400" height="200" src="http://asuresh213.github.io/2024/09/05/TDA3/meme.jpg">
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Recap-and-introduction"><span class="toc-number">1.</span> <span class="toc-text">Recap and introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Persistence-diagrams"><span class="toc-number">2.</span> <span class="toc-text">Persistence diagrams</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vectorizing-persistence-diagrams"><span class="toc-number">3.</span> <span class="toc-text">Vectorizing persistence diagrams</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Building-the-classifer-pipeline"><span class="toc-number">4.</span> <span class="toc-text">Building the classifer pipeline</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pitting-our-classifier-against-real-life-data"><span class="toc-number">5.</span> <span class="toc-text">Pitting our classifier against real life data</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Improving-our-model"><span class="toc-number">6.</span> <span class="toc-text">Improving our model</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://asuresh213.github.io/2024/09/05/TDA3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://asuresh213.github.io/2024/09/05/TDA3/&text=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://asuresh213.github.io/2024/09/05/TDA3/&title=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://asuresh213.github.io/2024/09/05/TDA3/&is_video=false&description=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Topological Data Analysis - Part 3 - Building a topological classifier.&body=Check out this article: http://asuresh213.github.io/2024/09/05/TDA3/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://asuresh213.github.io/2024/09/05/TDA3/&title=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA3/&title=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA3/&title=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://asuresh213.github.io/2024/09/05/TDA3/&title=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://asuresh213.github.io/2024/09/05/TDA3/&name=Topological Data Analysis - Part 3 - Building a topological classifier.&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://asuresh213.github.io/2024/09/05/TDA3/&t=Topological Data Analysis - Part 3 - Building a topological classifier."><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2024
+    Arun Suresh
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/cv/">CV</a></li>
+         
+          <li><a href="/teaching/">Teaching</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+
+<!-- SAGE stuff. Shamelessly stolen from
+      https://github.com/sheaves/sheaves.github.io/blob/master/_layouts/default.html
+    -->
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <!-- Cell definitions -->
+    <script>$(function () {
+    // Basic Python cell. Use <div class = "python">
+    // sagecell.makeSagecell({inputLocation: '.python', languages : ['python']});
+    // Basic Sage cell. Use <div class = "sage">
+    sagecell.makeSagecell({inputLocation: '.sage'});
+    // Gap cell. Use <div class = "gap">
+    sagecell.makeSagecell({inputLocation: '.gap', languages : ['gap']});
+    // R cell. Use <div class = "r">
+    sagecell.makeSagecell({inputLocation: '.r_e', linked:true, languages : ['r']});
+    // Auto evaluate Sage. Use <div class="auto">
+    sagecell.makeSagecell({inputLocation: '.auto', autoeval: 'True'});
+    // No editor, auto evaluate Sage. Use <div class="auto_out">
+    sagecell.makeSagecell({inputLocation: '.auto_out', autoeval: 'True', hide: ["editor", "evalButton", "editorToggle"]});
+   // No evalButton. Use <div class="no_eval">
+    sagecell.makeSagecell({inputLocation: '.no_eval', hide: ["evalButton", "editorToggle"]});
+    // No evalautoButton. Use <div class="r_no_auto_eval">
+    sagecell.makeSagecell({inputLocation: '.r_no_auto_eval', linked:true, hide: ["editor", "editorToggle"], languages : ['r']});
+    // No output. Use <div class="no_out">
+    sagecell.makeSagecell({inputLocation: '.no_out', hide: ["evalButton", "editorToggle","output"]});
+    // Only the 'Go!' button; no input displayed. Use <div class="go">
+    sagecell.makeSagecell({inputLocation:  '.go', autoeval: 'True',
+                       template:       sagecell.templates.minimal,
+                       evalButtonText: 'Go!'});
+    // Linked Sage cell. Use <div class ="linked">
+    sagecell.makeSagecell({inputLocation: '.linked', linked: 'True'});
+    // Linked Sage cell with autoeval. Use <div class ="linked_auto">
+    sagecell.makeSagecell({inputLocation: '.linked_auto', linked: 'True', autoeval: 'True'});
+    // All languages. Use <div class = "all">
+        sagecell.makeSagecell({inputLocation: '.all', languages: sagecell.allLanguages});
+    });
+    </script>
+    <!-- Basic Sage -->
+    <script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
