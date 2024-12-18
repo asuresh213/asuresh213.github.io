@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/rel_imp.png">
 <meta property="og:image" content="http://asuresh213.github.io/2024/09/05/TDA3/meme.jpg">
 <meta property="article:published_time" content="2024-09-05T22:56:58.000Z">
-<meta property="article:modified_time" content="2024-12-18T04:41:36.389Z">
+<meta property="article:modified_time" content="2024-12-18T17:19:18.168Z">
 <meta property="article:author" content="Arun Suresh">
 <meta property="article:tag" content="Research">
 <meta property="article:tag" content="TDA">
@@ -158,7 +158,7 @@
       
     <div class="postdate">
       
-        (Last updated: <time datetime="2024-09-05T22:56:58.000Z" itemprop="datePublished">2024-12-17</time>)
+        (Last updated: <time datetime="2024-09-05T22:56:58.000Z" itemprop="datePublished">2024-12-18</time>)
         
       
     </div>
@@ -184,21 +184,21 @@
 <p><font style="color:#ba92c5;"><strong>Definition:</strong></font> A $\mathcal{P}-$interval $(i,j)$ found in a persistence barcode, can be interpreted as a point on the half-plane defined by the inequality $x\leq y$ and vice versa. Thus every interval present in a barcode corresponds uniquely to a point in this half-plane. This alternate interpretation yields the persistence diagram of a filtered simplicial complex $\Delta$.</p>
 <p>The following diagram illustrates these equivalent representations side-by-side for a simplicial complex built out of a point-cloud sampled from a torus:</p>
 <img style="padding: 10px;" width="575" height="575" src="http://asuresh213.github.io/2024/09/05/TDA3/pers_diag.jpg">
-[Image source](https://chance.amstat.org/2021/04/topological-data-analysis/)
 
-
+<p><a target="_blank" rel="noopener" href="https://chance.amstat.org/2021/04/topological-data-analysis/">Image source</a></p>
+<p>Just like the length a $\mathcal{P}-$interval in a barcode indicates how strong a topological feature persists, the strength of persistence in a persistence diagram is given by the (vertical) distance of a point $(x,y)$ away from the diagonal $x=y$</p>
 <h1 id="Vectorizing-persistence-diagrams"><a href="#Vectorizing-persistence-diagrams" class="headerlink" title="Vectorizing persistence diagrams"></a>Vectorizing persistence diagrams</h1><p>Although persistence barcodes (or equivalently, diagrams) are useful in displaying homological information - they can not be used directly in data science or machine learning applications. For instance, there is not a well-defined way to perform algebra on persistence diagrams. As such, there is a need to “vectorize” the information contained in these persistence barcodes. Many methods have been introduced to solve this issue. Some notable ones include convolving the diagram with a kernel function to produce a heat-map of the persistence information, while another approach introduces the notion of a “persistence landscape”, which is a family of $L^p$ functions that extract the persistence information from a persistence diagram. In our particular application, we will introduce a much simpler way to vectorize our persistence diagrams via what is known as persistence entropy. Intuitively, this takes the persistence diagram in each homology dimension, and produces a number that quantifies how far away it is from having <em>no</em> homology in that dimension. More precisely,</p>
 <p><font style="color:#ba92c5;"><strong>Definition:</strong></font> Given a persistence diagram as a collection $D = {(b_i, d_i)}_{i\in I}$ with $b_i &lt; d_i &lt; \infty$, the persistence entropy of $D$ is defined as<br>    $$E(D) = -\sum_{i\in I} p_i\log(p_i), \qquad \text{ where } p_i = \frac{d_i-b_i}{L_D} \text{ and } L_D = \sum_{i \in I} d_i-b_i$$</p>
 <p>With this, we are ready to jump into our application</p>
 <h1 id="Building-the-classifer-pipeline"><a href="#Building-the-classifer-pipeline" class="headerlink" title="Building the classifer pipeline"></a>Building the classifer pipeline</h1><p><font style="color:#73efff;"><strong>Note:</strong></font>  The code for the implementation can be found <a target="_blank" rel="noopener" href="https://github.com/asuresh213/Robust-subspace-recovery-and-tda/blob/main/_demo_TopMLwithGiotto.ipynb">in this jupyter notebook</a>.</p>
 <p>We will use the python library <a target="_blank" rel="noopener" href="https://giotto-ai.github.io/gtda-docs/0.5.1/library.html">Giotto-tda</a> to develop a topological machine learning pipeline that will classify point clouds sampled from various shapes in $\mathbb{R}^3$. For the first part of the application, we will train and test the classifier on synthetic data and measure baseline performance. The synthetic point clouds will be sampled from four different shape classes:</p>
 <ol>
-<li>A circle, posing dim 0, 1 homologies and no dim 2 homology (i.e, $\beta_\mathcal{X} = [1,1,0]$)</li>
-<li>A Sphere, posing dim 0, 2 homologies and no dim 1 homology (i.e, $\beta_\mathcal{X} = [1,0,1]$)</li>
-<li>A Torus, posing dim 0 homology, two dim 1 homologies and 1 dim 2 homology (i.e, $\beta_\mathcal{X} = [1,2,1]$)</li>
-<li>A Plane, posing dim 0 homology and no dim 1,2 homologies. (i.e, $\beta_\mathcal{X} = [1,0,0]$)</li>
+<li>A circle, posing a strong homology in dims 0, 1 and no dim 2 homology (i.e, $\beta_\mathcal{X} = [1,1,0]$)</li>
+<li>A Sphere, posing a strong homology in dims 0, 2 and no dim 1 homology (i.e, $\beta_\mathcal{X} = [1,0,1]$)</li>
+<li>A Torus, posing a strong homology in dims 0, 2 and two strong dim 1 homologies (i.e, $\beta_\mathcal{X} = [1,2,1]$)</li>
+<li>A Plane, posing a strong homology in dim 0, and no dim 1,2 homologies. (i.e, $\beta_\mathcal{X} = [1,0,0]$)</li>
 </ol>
-<p>We will sample $10$ different point clouds for each shape class, and each point cloud will be made up of $100$ points. Thus, our raw data is a tensor of shape $40\times 100 \times 3$. Here’s a sample of how each of our point clouds look:</p>
+<p>We will sample $10$ different point clouds for each shape class (sampled with some uniform noise away from the shape), and each point cloud will be made up of $100$ points. Thus, our raw data is a tensor of shape $40\times 100 \times 3$. Here’s a sample of how each of our point clouds look:</p>
 <div class="row">
   <div class="column">
     <img src="http://asuresh213.github.io/2024/09/05/TDA3/ptcircle.png" alt="Circle" style="width:100%">
@@ -215,7 +215,7 @@
 </div>
 
 
-<p>We then construct the VietorisRips complex associated to each point cloud, and use it to generate it’s persistence diagram. This part is neatly packaged into a single function <code>gtda.get_diagrams</code> in Giotto. Below are the generated persistence diagram for each of the shapes illustrated above:</p>
+<p>We then construct the VietorisRips complex associated to each point cloud, and use it to generate it’s persistence diagram. This part is neatly packaged into a single function $\texttt{get_diagrams}$ in Giotto. Shown below are the generated persistence diagram for each of the shapes illustrated above:</p>
 <div class="row">
   <div class="column">
     <img src="http://asuresh213.github.io/2024/09/05/TDA3/circ.png" alt="Circle" style="width:100%">
@@ -232,7 +232,7 @@
 </div>
 
 
-<p>We see that the circle poses a strong dimension 1 homology, whereas a sphere produces a strong dimension 2 homology. We also see that the Torus exhibits multiple (two) strong dimension 1 homologies, and the plane has no significant homologies present in dimensions greater than 0. We will capture this observation mathematically via calling the entropy function on each of our persistence diagram. This gives us three numbers for each persistence diagram, with each number corresponding to the entropy in a homology dimension. Since we only compute up to dimension $2$ homologies, we can conveniently plot the entropies as points in $\mathbb{R}^3$. The plot is presented in figure below<br><img style="padding: 10px;" width="300" height="300" src="http://asuresh213.github.io/2024/09/05/TDA3/entropies.png"></p>
+<p>We see that the circle poses a strong dimension 1 homology, whereas a sphere produces a strong dimension 2 homology. We also see that the Torus exhibits multiple strong dimension 1 homologies, and finally the plane has no significant homologies present in dimensions greater than 0. We will capture this observation mathematically via calling the entropy function on each of our persistence diagram. This gives us three numbers for each persistence diagram, with each number corresponding to the entropy in a homology dimension. Since we only compute up to dimension $2$ homologies, we can conveniently plot the entropies as points in $\mathbb{R}^3$. The plot is presented in figure below<br><img style="padding: 10px;" width="300" height="300" src="http://asuresh213.github.io/2024/09/05/TDA3/entropies.png"></p>
 <p>We can see that there are clearly four families of points, each corresponding to a different shape in our initial point cloud data.  Having successfully vectorized our persistence diagrams, we could use any of the various classifiers present in a robust machine learning package like scipy. In this case, since we can already visually confirm the presence of clusters, we can use something like the $\texttt{RandomForestClassifier}$ that is robust for such clustering problems. </p>
 <p><font style="color:#73efff;"><strong>Important upshot:</strong></font> The input to our classifier now is <em>just</em> 3 dimensional as opposed to 300 dimensional, had we fed in the entire point cloud with 100 points each with 3 numbers quantifying the x,y and z values! This is a substantial reduction of the input feature size from $300$ to just $3$ - an improvement by a factor of $d/N &lt;&lt; 1$! </p>
 <p>In addition to just substantial reduction of input feature size, we note that in this synthetic case, upon training we obtain convergence of our model with a ‘out-of-bag’ validation accuracy of 100%.</p>
@@ -246,9 +246,9 @@
 <p>and we observe no nice clusters. This is expected out of real world data that doesn’t have just a single prominent topological feature. So we should expect our model to not perform very well; which is indeed the case:</p>
 <img style="padding: 10px;" width="340" height="200" src="http://asuresh213.github.io/2024/09/05/TDA3/rf_take1.png">
 
-<p>Although 60% do not sound very impressive, it is worth noting that with four shape classes - just random guessing will only give an $\texttt{oob_score}$ of just 0.25. </p>
-<h1 id="Improving-our-model"><a href="#Improving-our-model" class="headerlink" title="Improving our model"></a>Improving our model</h1><p>Note that the above model has effectively improved the input feature size from $N$ to just $3$. So, one way to improve our model is to extract more topological quantifiers, and their vectorized versions as additional inputs to our classifier. For instance by only using the PersistenceEntropy to classify our shapes, we are averaging out the distribution of points on the persistence diagram which might hold important information - for instance, the number of off-diagonal points in our persistence diagrams could be a great predictor of how clean our homology is, which is bound to change between different classes (and thus might be a good predictor). In addition to persistence entropy, we can also have other measures of “amplitudes” that detect how far away a given persistence diagram is from the trivial persistence diagram (of the empty-set, where no homological information is observed in any dimension). Giotto comes built in with various standard amplitudes that are considered industry standard. Each of these amplitude will contribute to three new features (one for each homology dimension) that could potentially improve our classifier.</p>
-<p>We will package all these additional new features along with our persistence entropy into a pipeline and fit a RandomForest classifier to this new feature union.</p>
+<p>Although 60% does not sound very impressive, it is worth noting that with four shape classes - just random guessing will only give an $\texttt{oob_score}$ of just 0.25. </p>
+<h1 id="Improving-our-model"><a href="#Improving-our-model" class="headerlink" title="Improving our model"></a>Improving our model</h1><p>Note that the above model has effectively improved the input feature size from $N$ to <em>just</em> $3$, but this came at a price of sacrificing performance. So, one way to improve our model is to extract more topological quantifiers, and their vectorized versions as additional inputs to our classifier. For instance by only using the $\texttt{PersistenceEntropy}$ to classify our shapes, we are averaging out the distribution of points on the persistence diagram which might hold important information - for instance, the number of off-diagonal points in our persistence diagrams could be a great predictor of how clean our homology is, which is bound to change between different classes (and thus might be a good predictor). In addition to persistence entropy, we can also have other measures of “amplitudes” that detect how far away a given persistence diagram is from the trivial persistence diagram (of the empty-set, where no homological information is observed in any dimension). Giotto comes built in with various standard amplitudes that are considered industry standard. Each of these amplitude will contribute to three new features (one for each homology dimension) that could potentially improve our classifier.</p>
+<p>We will package all these additional new features along with our persistence entropy into a pipeline and fit a RandomForest classifier to this new feature union. Including all these new metrics as features in our classifier, we end up with a model that takes $21$ input values, which is still considerably smaller than $300$.  </p>
 <img style="padding: 10px;" width="400" height="200" src="http://asuresh213.github.io/2024/09/05/TDA3/pipeline.png">
 
 <p>As expected, the model does considerably better here, with an out-of-bag accuracy of 82.5%! We can now also rank the relative importance of each of the above topological features. This produces the following chart:</p>
